@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1536px;
+  min-height: 100vh;
+
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dataUser {
+  display: flex;
+  gap: 2vh;
+  flex-direction: column;
+  justify-content: center;
+}
+.options {
+  margin-right: 5vh;
+  margin-bottom: 66%;
+}
+.options_first {
+  margin-right: 8px;
+  color: rgb(21, 111, 190);
+}
+.options_first:hover {
+  color: rgb(0, 136, 255);
+}
+
+.options_second {
+  color: rgb(158, 12, 12);
+}
+.options_second:hover {
+  color: rgb(253, 0, 0);
+}

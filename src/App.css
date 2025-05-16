@@ -1,0 +1,29 @@
+html,
+body {
+  height: 100%;
+  flex-direction: column;
+}
+
+#root {
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+body.light-mode {
+  background-color: #f4f4f9;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #1e1e2f;
+  color: #dcdde1;
+  transition: background-color 0.3s, color 0.3s;
+}
