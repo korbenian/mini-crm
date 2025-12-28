@@ -1,28 +1,20 @@
-# 🧩 Mini CRM
+🧩 Mini CRM
+A simple React + TypeScript application with Firebase that allows the user to register, log in, and create profile cards (name, age, description). Support for changing the theme and language.
 
-Простое приложение на React + TypeScript с Firebase, которое позволяет пользователю зарегистрироваться, войти и создавать карточки с профилем (имя, возраст, описание). Поддержка смены темы и языка.
-
-## 🚀 Стек
-
-- React + TypeScript
-- Firebase (Auth, Firestore)
-- SCSS Modules
-- i18next (мультиязычность)
-- LocalStorage (тема, язык)
-
-## 🖥️ Возможности
-
-- Регистрация и авторизация
-- Создание карточек с данными пользователя
-- Сохранение профиля в Firestore
-- Смена языка (RU / EN)
-- Переключение между светлой и тёмной темой
-
-## 📦 Установка и запуск
-
-```bash
+🚀 Stack
+React + TypeScript
+Firebase (Auth, Firestore)
+SCSS Modules
+i18next (multilingual)
+LocalStorage (theme, language)
+🖥️ Features
+Registration and authorization
+Creating cards with user data
+Saving the profile in Firestore
+Changing the language (RU / EN)
+Switching between light and dark themes
+📦 Installation and launch
 git clone https://github.com/korbenian/mini-crm.git
 cd mini-crm
 npm install
 npm run dev
-```
