@@ -1,27 +1,55 @@
-import React, { useEffect } from 'react'
+import { Select, MenuItem, Box, Typography } from '@mui/material'
+import { SelectChangeEvent } from '@mui/material/Select'
 import { useTranslation } from 'react-i18next'
+import styles from './ChangeLanguage.module.scss'
+import ReactCountryFlag from 'react-country-flag'
+import { languages, Lang } from './langueges'
 
-const ChangeLanguage = () => {
+
+const LanguageSwitcher = () => {
   const { i18n } = useTranslation()
 
-  useEffect(() => {
-    const storedLang = localStorage.getItem('lang')
-    if (storedLang) {
-      i18n.changeLanguage(storedLang)
-    }
-  }, [i18n])
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ru' : 'en'
-    i18n.changeLanguage(newLang)
-    localStorage.setItem('lang', newLang)
+  const changeLanguage = (event: SelectChangeEvent<Lang>) => {
+    const lang = event.target.value as Lang
+    i18n.changeLanguage(lang)
+    localStorage.setItem('lang', lang)
   }
 
   return (
-    <button onClick={toggleLanguage}>
-      {i18n.language === 'en' ? 'EN' : 'RU'}
-    </button>
+    <Select
+      value={i18n.language as Lang}
+      onChange={changeLanguage}
+      
+       className={styles.select}
+      renderValue={(value) => {
+        const lang = languages.find(l => l.code === value)
+
+        return (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <ReactCountryFlag
+              svg
+              countryCode={lang?.countryCode || 'US'}
+              style={{ width: '1.4em', height: '1.4em' }}
+            />
+            <Typography variant="body2">{lang?.label}</Typography>
+          </Box>
+        )
+      }}
+    >
+      {languages.map((lang) => (
+        <MenuItem key={lang.code} value={lang.code}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <ReactCountryFlag
+              svg
+              countryCode={lang.countryCode}
+              style={{ width: '1.4em', height: '1.4em' }}
+            />
+            <Typography variant="body2">{lang.label}</Typography>
+          </Box>
+        </MenuItem>
+      ))}
+    </Select>
   )
 }
 
-export default ChangeLanguage
+export default LanguageSwitcher

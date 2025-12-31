@@ -19,9 +19,10 @@ const RegisterPage = () => {
       await createUserWithEmailAndPassword(auth, email, password)
 
       navigate('/dashboard')
-    } catch (err) {
-      setError('Регистрация не удалась.Попробуйте еще раз')
-    }
+    } catch (err: any) {
+  console.error(err)
+  setError(err.message)
+}
   }
   return (
     <div className={styles.RegisterPage}>
