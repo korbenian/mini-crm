@@ -9,6 +9,11 @@ const resources = {
         loading: 'Loading...',
         loadingdata: 'Loading data User'
       },
+      registration: {
+  title: 'Registration',
+  haveAccount: 'Do you have an account?',
+  link: 'Click here'
+},
       login: {
         title: 'Login',
         email: 'Email',
@@ -62,11 +67,17 @@ const resources = {
       loading: {
         loading: 'Загрузка...',
         loadingdata: 'Загрузка данных профиля'
-      },
+      },registration: {
+  title: 'Регистрация',
+  haveAccount: 'У вас есть аккаунт?',
+  link: 'Нажмите здесь'
+}
+,
       login: {
         title: 'Вход',
         email: 'Почта',
         password: 'Пароль',
+        
         button: 'Войти',
         noAccount: 'У вас нет аккаунта?',
         link: 'Нажмите сюда',
@@ -116,7 +127,11 @@ const resources = {
       loading: {
         loading: 'Chargement...',
         loadingdata: 'Chargement des données utilisateur'
-      },
+      },registration: {
+  title: 'Inscription',
+  haveAccount: 'Vous avez un compte ?',
+  link: 'Cliquez ici'
+},
       login: {
         title: 'Connexion',
         email: 'Email',
@@ -170,7 +185,11 @@ const resources = {
       loading: {
         loading: 'Laden...',
         loadingdata: 'Benutzerdaten werden geladen'
-      },
+      },registration: {
+  title: 'Registrierung',
+  haveAccount: 'Haben Sie ein Konto?',
+  link: 'Hier klicken'
+},
       login: {
         title: 'Anmelden',
         email: 'E-Mail',
@@ -224,7 +243,11 @@ const resources = {
       loading: {
         loading: 'Laden...',
         loadingdata: 'Gebruikersgegevens laden'
-      },
+      },registration: {
+  title: 'Registratie',
+  haveAccount: 'Heeft u een account?',
+  link: 'Klik hier'
+},
       login: {
         title: 'Inloggen',
         email: 'E-mail',
@@ -279,6 +302,11 @@ const resources = {
         loading: 'Ładowanie...',
         loadingdata: 'Ładowanie danych użytkownika'
       },
+      registration: {
+  title: 'Rejestracja',
+  haveAccount: 'Czy masz konto?',
+  link: 'Kliknij tutaj'
+},
       login: {
         title: 'Logowanie',
         email: 'Email',

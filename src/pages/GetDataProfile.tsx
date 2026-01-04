@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { auth, db } from '../firebase'
-import { collection, query, where, getDocs, addDoc } from 'firebase/firestore'
-import { onAuthStateChanged } from 'firebase/auth'
+import { collection, query, where, getDocs, addDoc, setDoc } from 'firebase/firestore'
+import { onAuthStateChanged ,User} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import Input from '../components/Input'
 import styles from './GetDataProfile.module.scss'
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, updateDoc } from "firebase/firestore";
+
 import { Link } from 'react-router-dom'
 import ChangeTheme from '../components/ThemeButton'
 import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from '../components/ChangeLanguage'
 type UserProfile = {
   name: string
   age: number
   about: string
+  avatarUrl?: string;
 }
 
 const CreateProfile: React.FC = () => {
-  const [firebaseUser, setFirebaseUser] = useState<any>(null)
+  const [firebaseUser, setFirebaseUser] = useState<User | null>(null)
   const { t } = useTranslation()
   const [profileData, setProfileData] = useState<UserProfile>({
     name: '',
@@ -45,6 +51,30 @@ const CreateProfile: React.FC = () => {
     return () => unsubscribe()
   }, [navigate])
 
+
+
+const storage = getStorage();
+
+const handleAvatarChange = async (
+  e: React.ChangeEvent<HTMLInputElement>
+): Promise<void> => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  const user = auth.currentUser;
+  if (!user) return;
+
+  const avatarRef = ref(storage, `avatars/${user.uid}`);
+  await uploadBytes(avatarRef, file);
+
+  const url = await getDownloadURL(avatarRef);
+
+  await updateDoc(doc(db, "users", user.uid), {
+    avatarUrl: url,
+  });
+};
+
+
   const handleSaveProfile = async () => {
     if (!firebaseUser) return
 
@@ -61,12 +91,12 @@ const CreateProfile: React.FC = () => {
         return
       }
 
-      await addDoc(collection(db, 'users'), {
-        uid: firebaseUser.uid,
-        name: profileData.name,
-        age: profileData.age,
-        about: profileData.about
-      })
+      await setDoc(doc(db, "users", firebaseUser.uid), {
+  uid: firebaseUser.uid,
+  name: profileData.name,
+  age: profileData.age,
+  about: profileData.about,
+});
       console.log('Профиль создан')
       navigate('/ClientForm')
     } catch (err) {
@@ -80,15 +110,26 @@ const CreateProfile: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <p className={styles.ExitBox}>
-        <ChangeTheme />
         <Link className={styles.exit} to='/Dashboard'>
           {t('createprofile.exit')}
         </Link>
+        <ChangeTheme />
+        <LanguageSwitcher/>
+        
       </p>
       <div className={styles.create_account}>
         <h1 className={styles.title}>{t('createprofile.createprofile')}</h1>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <input
+        {firebaseUser && (
+  <input
+    type="file"
+    accept="image/*"
+    onChange={handleAvatarChange}
+  />
+)}
+
+
+        <Input
           className={styles.input}
           type='text'
           placeholder={t('createprofile.name')}
@@ -97,7 +138,7 @@ const CreateProfile: React.FC = () => {
             setProfileData({ ...profileData, name: e.target.value })
           }
         />
-        <input
+        <Input
           className={styles.input}
           placeholder={t('createprofile.age')}
           value={profileData.age}
@@ -105,7 +146,7 @@ const CreateProfile: React.FC = () => {
             setProfileData({ ...profileData, age: +e.target.value })
           }
         />
-        <textarea
+        <Input
           className={styles.textarea}
           placeholder={t('createprofile.description')}
           value={profileData.about}

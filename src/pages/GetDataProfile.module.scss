@@ -19,7 +19,7 @@ body {
   max-width: 500px;
   margin: 2rem auto;
   padding: 2rem;
-  background: #f9f9f9;
+  background: rgba(10, 10, 30, 0.85);
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
@@ -72,7 +72,7 @@ body {
   margin: 12px;
 }
 .wrapper {
-  width: 170vh;
+  width: 180vh;
 }
 .exit {
   display: flex;

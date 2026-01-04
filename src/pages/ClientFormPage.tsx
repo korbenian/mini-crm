@@ -6,11 +6,14 @@ import { collection, query, where, getDocs } from 'firebase/firestore'
 import styles from './ClientFormPage.module.scss'
 import ThemeButton from '../components/ThemeButton'
 import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from '../components/ChangeLanguage'
 type UserProfile = {
   name: string
   age: number
   about: string
+  avatarUrl?: string
 }
+
 
 const ClientForm: React.FC = () => {
   const [firebaseUser, setFirebaseUser] = useState<User | null>(null)
@@ -57,23 +60,32 @@ const ClientForm: React.FC = () => {
             {t('profile.exit')}
           </Link>
           <ThemeButton />
+          <LanguageSwitcher/>
         </p>
       </div>
-      <div className={styles.dataUser}>
-        <h1>{t('profile.profile')}</h1>
-        <p>
-          <strong>{t('profile.email')}:</strong> {firebaseUser.email}
-        </p>
-        <p>
-          <strong>{t('profile.name')}:</strong> {profileData.name}
-        </p>
-        <p>
-          <strong>{t('profile.age')}:</strong> {profileData.age}
-        </p>
-        <p>
-          <strong>{t('profile.aboutuser')}:</strong> {profileData.about}
-        </p>
-      </div>
+     <div className={styles.dataUser}>
+  <h1>{t('profile.profile')}</h1>
+
+  <img
+    src={profileData.avatarUrl ?? '/default-avatar.png'}
+    alt="avatar"
+    className={styles.avatar}
+  />
+
+  <p>
+    <strong>{t('profile.email')}:</strong> {firebaseUser.email}
+  </p>
+  <p>
+    <strong>{t('profile.name')}:</strong> {profileData.name}
+  </p>
+  <p>
+    <strong>{t('profile.age')}:</strong> {profileData.age}
+  </p>
+  <p>
+    <strong>{t('profile.aboutuser')}:</strong> {profileData.about}
+  </p>
+</div>
+
     </div>
   )
 }

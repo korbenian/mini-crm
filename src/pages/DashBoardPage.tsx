@@ -74,19 +74,19 @@ const DashBoardPage = () => {
         <h2>{t('dashboard.mycards')}</h2>
 
         <div className={styles.form}>
-          <input
+          <Input
             className={styles.getName}
             value={name}
             onChange={e => setName(e.target.value)}
             placeholder={t('dashboard.name')}
           />
-          <input
+          <Input
             value={age}
             className={styles.getAge}
             onChange={e => setAge(e.target.value)}
             placeholder={t('dashboard.age')}
           />
-          <input
+          <Input
             value={description}
             className={styles.getDescription}
             onChange={e => setDescription(e.target.value)}

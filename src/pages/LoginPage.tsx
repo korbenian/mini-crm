@@ -51,7 +51,7 @@ const LoginPage = () => {
           />
           {error && <p className={styles.error}>{error}</p>}
           <Button type='submit' label={t('login.button')} />
-          <p>
+          <p className={styles.haveAccount}>
             {t('login.noAccount')} <Link to='/register'>{t('login.link')}</Link>
           </p>
         </form>
