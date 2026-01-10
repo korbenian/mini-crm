@@ -5,10 +5,11 @@ import LoginPage from './pages/LoginPage'
 import DashBoardPage from './pages/DashBoardPage'
 import ProfilePage from './pages/ClientFormPage'
 import EditProfile from './pages/EditProfile'
-
+import ArticlesPage from './pages/Articles'
 import './App.css'
 import CreateProfile from './pages/GetDataProfile'
 import ClientForm from './pages/ClientFormPage'
+import ChatWithAI from './pages/ChatWithAI'
 
 function App () {
   return (
@@ -20,6 +21,8 @@ function App () {
         <Route path='/ClientForm' element={<ClientForm />} />
         <Route path='/EditProfile' element={<EditProfile />} />
         <Route path='/CreateProfile' element={<CreateProfile />} />
+         <Route path='/Articles' element={<ArticlesPage />} />
+         <Route path='/ChatWithAI' element={<ChatWithAI />} />
       </Routes>
     </>
   )

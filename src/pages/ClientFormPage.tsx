@@ -2,44 +2,55 @@ import React, { useEffect, useState } from 'react'
 import { auth, db } from '../firebase'
 import { Link } from 'react-router-dom'
 import { onAuthStateChanged, User } from 'firebase/auth'
-import { collection, query, where, getDocs } from 'firebase/firestore'
+import { collection, query, where, getDocs,getDoc,doc} from 'firebase/firestore'
 import styles from './ClientFormPage.module.scss'
+import TechSelector from '../components/TechSelector'
 import ThemeButton from '../components/ThemeButton'
 import { useTranslation } from 'react-i18next'
+import Sidebar from '../components/Sidebar'
 import LanguageSwitcher from '../components/ChangeLanguage'
 type UserProfile = {
   name: string
   age: number
   about: string
   avatarUrl?: string
+  techStack?: string[]
 }
 
 
 const ClientForm: React.FC = () => {
   const [firebaseUser, setFirebaseUser] = useState<User | null>(null)
+    const [techStack, setTechStack] = useState<string[]>([])
+     const [showTech, setShowTech] = useState(false)
   const [profileData, setProfileData] = useState<UserProfile | null>(null)
   const { t } = useTranslation()
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async user => {
-      if (user) {
-        setFirebaseUser(user)
+  const unsubscribe = onAuthStateChanged(auth, async user => {
+    if (!user) {
+      setFirebaseUser(null)
+      setProfileData(null)
+      return
+    }
 
-        const q = query(collection(db, 'users'), where('uid', '==', user.uid))
-        const querySnapshot = await getDocs(q)
+    setFirebaseUser(user)
 
-        if (!querySnapshot.empty) {
-          setProfileData(querySnapshot.docs[0].data() as UserProfile)
-        } else {
-          console.log('Профиль не найден')
-        }
-      } else {
-        setFirebaseUser(null)
-        setProfileData(null)
-      }
-    })
+    const userRef = doc(db, 'users', user.uid)
+    const snap = await getDoc(userRef)
 
-    return () => unsubscribe()
-  }, [])
+    if (snap.exists()) {
+  const data = snap.data()
+  setProfileData(data as UserProfile)
+
+  if (data.techStack) {
+    setTechStack(data.techStack)
+  }
+} else {
+      console.log('Профиль не найден')
+    }
+  })
+
+  return () => unsubscribe()
+}, [])
 
   if (!firebaseUser) {
     return <p>Вы не вошли в систему</p>
@@ -51,19 +62,16 @@ const ClientForm: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
+     <div className={styles.Sidebar}>
+        <Sidebar />
+      </div>
       <div>
         <p className={styles.options}>
           <Link className={styles.options_first} to='/EditProfile'>
             {t('profile.edit')}
           </Link>
-          <Link className={styles.options_second} to='/DashBoard'>
-            {t('profile.exit')}
-          </Link>
-          <ThemeButton />
-          <LanguageSwitcher/>
-        </p>
-      </div>
-     <div className={styles.dataUser}>
+       
+           <div className={styles.dataUser}>
   <h1>{t('profile.profile')}</h1>
 
   <img
@@ -83,10 +91,28 @@ const ClientForm: React.FC = () => {
   </p>
   <p>
     <strong>{t('profile.aboutuser')}:</strong> {profileData.about}
-  </p>
+  </p>    <span className={styles.techText}>
+    {t('technologies')} = {techStack.join(', ')}
+  </span>
+  <p className={styles.techList + ' ' + (!showTech ? styles.hidden : '')}>
+  <TechSelector onChange={list => setTechStack(list)} />
+
+</p>
+
+<button
+  className={styles.techToggleButton}
+  onClick={() => setShowTech(prev => !prev)}
+>
+  {showTech ? t('hideTech') : t('addTech')}
+</button>
+</div>
+        </p>
+        
+      </div>
+    
 </div>
 
-    </div>
+    
   )
 }
 

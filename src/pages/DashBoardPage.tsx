@@ -2,13 +2,9 @@ import { useEffect, useState } from 'react'
 import styles from './DashboardPage.module.scss'
 import { auth, db } from '../firebase'
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Input from '../components/Input'
-import Button from '../components/Button'
-import ChangeTheme from '../components/ThemeButton'
-import ChangeLanguage from '../components/ChangeLanguage'
+import Sidebar from '../components/Sidebar'
 
 type Card = {
   id: string
@@ -60,15 +56,14 @@ const DashBoardPage = () => {
 
   return (
     <div className={styles.DashBoardPage}>
+      <div className={styles.Sidebar}>
+    <Sidebar />
+  </div>
+     <div className={styles.mainContent}>
       <p className={styles.ExitBox}>
-        <Link className={styles.exit} to='/'>
-          {t('dashboard.exit')}
-        </Link>
-        <Link className={styles.CreateProfile} to='/CreateProfile'>
-          {t('dashboard.account')}
-        </Link>
-        <ChangeTheme />
-        <ChangeLanguage />
+      
+      
+       
       </p>
       <div className={styles.topSection}>
         <h2>{t('dashboard.mycards')}</h2>
@@ -105,6 +100,7 @@ const DashBoardPage = () => {
             <p>{card.description}</p>
           </div>
         ))}
+        </div>
       </div>
     </div>
   )

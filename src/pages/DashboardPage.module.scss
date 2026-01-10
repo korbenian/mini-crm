@@ -4,6 +4,13 @@
   display: flex;
   flex-direction: column;
 }
+.Sidebar {
+  flex-shrink: 0;
+}
+.mainContent {
+  flex: 1;
+  margin-left: 15%; 
+}
 #root {
   min-height: 100%;
 }

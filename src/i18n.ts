@@ -22,7 +22,12 @@ const resources = {
         noAccount: 'Don’t have an account?',
         link: 'Click here',
         error: 'Unknown error'
-      },
+      },navigation: {
+  dashboard: 'Dashboard',
+  articles: 'Articles',
+  tasks: 'Tasks',
+  chat: 'Chat with AI'
+},
       dashboard: {
         age: 'Age',
         name: 'Name',
@@ -82,7 +87,13 @@ const resources = {
         noAccount: 'У вас нет аккаунта?',
         link: 'Нажмите сюда',
         error: 'Неизвестная ошибка'
-      },
+      },navigation: {
+  dashboard: 'Дашборд',
+  articles: 'Статьи',
+  tasks: 'Задачи',
+  chat: 'Чат с ИИ'
+}
+,
       dashboard: {
         age: 'Возраст',
         name: 'Имя',
@@ -131,7 +142,13 @@ const resources = {
   title: 'Inscription',
   haveAccount: 'Vous avez un compte ?',
   link: 'Cliquez ici'
-},
+},navigation: {
+  dashboard: 'Tableau de bord',
+  articles: 'Articles',
+  tasks: 'Tâches',
+  chat: 'Chat avec IA'
+}
+,
       login: {
         title: 'Connexion',
         email: 'Email',
@@ -189,6 +206,11 @@ const resources = {
   title: 'Registrierung',
   haveAccount: 'Haben Sie ein Konto?',
   link: 'Hier klicken'
+},navigation: {
+  dashboard: 'Dashboard',
+  articles: 'Artikel',
+  tasks: 'Aufgaben',
+  chat: 'Chat mit KI'
 },
       login: {
         title: 'Anmelden',
@@ -247,7 +269,13 @@ const resources = {
   title: 'Registratie',
   haveAccount: 'Heeft u een account?',
   link: 'Klik hier'
-},
+},navigation: {
+  dashboard: 'Dashboard',
+  articles: 'Artikelen',
+  tasks: 'Taken',
+  chat: 'Chat met AI'
+}
+,
       login: {
         title: 'Inloggen',
         email: 'E-mail',
@@ -306,7 +334,13 @@ const resources = {
   title: 'Rejestracja',
   haveAccount: 'Czy masz konto?',
   link: 'Kliknij tutaj'
-},
+},navigation: {
+  dashboard: 'Panel',
+  articles: 'Artykuły',
+  tasks: 'Zadania',
+  chat: 'Czat z AI'
+}
+,
       login: {
         title: 'Logowanie',
         email: 'Email',
