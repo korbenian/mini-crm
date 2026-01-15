@@ -59,7 +59,8 @@
 }
 
 .messages {
-  min-width: 0;
+  min-width: 0; /* важно для flex */
+  max-width: 100%; /* не даём контенту растягиваться */
   padding: 32px 16px;
   display: flex;
   flex-direction: column;
@@ -67,23 +68,26 @@
 }
 
 .message {
-  max-width: 75%;
+  width: fit-content; /* чтобы блок занимал только нужное место */
+  max-width: 75%; /* ограничиваем ширину */
   padding: 12px 16px;
   border-radius: 16px;
   line-height: 1.5;
+  word-break: break-word;
 }
 
 .user {
-  margin-left: auto;
+  margin-left: 75%; /* справа */
   background: #2563eb;
   color: #fff;
 }
 
 .assistant {
-  margin-right: auto;
+  margin-right: auto; /* слева */
   background: #e5e7eb;
   color: #111;
 }
+
 
 .status,
 .error,

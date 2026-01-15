@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useChatLogic } from '../components/useChatLogic'
 import styles from './ChatWithAI.module.scss'
 import ChatInput from '../components/ChatInput'
+import { useTranslation } from 'react-i18next'
 import Sidebar from '../components/Sidebar'
 export default function ChatWithAI () {
   const {
@@ -15,7 +16,7 @@ export default function ChatWithAI () {
   } = useChatLogic()
 
   const [showSidebar, setShowSidebar] = useState(false)
-
+const { t } = useTranslation()
   return (
   <div className={styles.chat}>
     <aside className={styles.sidebar}>
@@ -25,13 +26,7 @@ export default function ChatWithAI () {
     <div className={styles.page}>
       <main className={styles.main}>
         <header className={styles.header}>
-          <button
-            className={styles.menuBtn}
-            onClick={() => setShowSidebar(p => !p)}
-          >
-            ☰
-          </button>
-          <strong>Chat with AI</strong>
+          <strong>{t('chat.title')}</strong>
         </header>
 
         <div className={styles.messagesWrapper}>
@@ -49,11 +44,21 @@ export default function ChatWithAI () {
               </div>
             ))}
 
-            {loading && <div className={styles.status}>AI thinks…</div>}
-            {error && <div className={styles.error}>{error}</div>}
+            {loading && (
+              <div className={styles.status}>
+                {t('chat.thinking')}
+              </div>
+            )}
+
+            {error && (
+              <div className={styles.error}>
+                {error}
+              </div>
+            )}
+
             {!loading && messages.length === 0 && (
               <div className={styles.empty}>
-                Write the first question 👇
+                {t('chat.empty')}
               </div>
             )}
           </section>
@@ -63,7 +68,7 @@ export default function ChatWithAI () {
           input={input}
           setInput={setInput}
           onSend={handleSend}
-          placeholder="Ask me something.…"
+          placeholder={t('chat.placeholder')}
         />
       </main>
     </div>

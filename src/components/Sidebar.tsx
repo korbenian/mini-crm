@@ -37,7 +37,7 @@ export default function Sidebar () {
             <span>{t('navigation.articles')}</span>
           </Link>
 
-          <Link to='/Tasks' className={styles.link}>
+          <Link to='/TaskPage' className={styles.link}>
             <ClipboardList size={18} />
             <span>{t('navigation.tasks')}</span>
           </Link>

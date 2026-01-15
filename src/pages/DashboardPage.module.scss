@@ -84,3 +84,85 @@ body {
 .CreateProfile {
   margin: 20px;
 }
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+
+  &__card {
+    position: relative;
+    padding: 20px;
+    border-radius: 18px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.25s ease;
+    cursor: default;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    // акцентная полоска
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border-left: 4px solid #f59e0b; // amber
+      pointer-events: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__label {
+    font-size: 14px;
+    color: #6b7280;
+    letter-spacing: 0.02em;
+  }
+
+  &__value {
+    width: 15%;
+    font-size: 28px;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  &__sub {
+    font-size: 12px;
+    color: #9ca3af;
+  }
+}
+
+/* 🌙 Dark mode */
+.dark .metrics {
+  &__card {
+    background: #0f172a;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+    &::before {
+      border-left-color: #fbbf24;
+    }
+  }
+
+  &__label {
+    color: #9ca3af;
+  }
+
+  &__value {
+    color: #f9fafb;
+    background-color: #9ca3af;
+    width: 15%;
+  }
+
+  &__sub {
+    color: #6b7280;
+  }
+}

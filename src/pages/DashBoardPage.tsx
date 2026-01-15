@@ -17,6 +17,7 @@ type Card = {
 const DashBoardPage = () => {
   const [name, setName] = useState('')
   const [age, setAge] = useState('')
+   const [count, setCount] = useState(0)
   const [description, setDescription] = useState('')
   const [cards, setCards] = useState<Card[]>([])
   const userId = auth.currentUser?.uid
@@ -34,6 +35,19 @@ const DashBoardPage = () => {
   useEffect(() => {
     LoadUserCards()
   }, [userId])
+
+useEffect(() => {
+  const ref = collection(db, 'users')
+
+  getDocs(ref)
+    .then(snapshot => {
+      console.log('users size:', snapshot.size)
+      setCount(snapshot.size)
+    })
+    .catch(err => {
+      console.error('Firestore error:', err)
+    })
+}, [])
 
   const handleAddCard = async () => {
     if (!name || !age || !description) return
@@ -53,7 +67,12 @@ const DashBoardPage = () => {
     setDescription('')
     LoadUserCards()
   }
-
+ const metrics = [
+  
+    { id: 1, title: 'Всего прользователей', value: count }
+   
+  
+  ]
   return (
     <div className={styles.DashBoardPage}>
       <div className={styles.Sidebar}>
@@ -66,6 +85,15 @@ const DashBoardPage = () => {
        
       </p>
       <div className={styles.topSection}>
+      <div className="metrics">
+  {metrics.map(m => (
+    <div key={m.id} className="metrics__card">
+      <div className="metrics__content">
+        <p className="metrics__value">{m.value}</p>
+      </div>
+    </div>
+  ))}
+</div>
         <h2>{t('dashboard.mycards')}</h2>
 
         <div className={styles.form}>

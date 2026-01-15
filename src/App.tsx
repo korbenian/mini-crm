@@ -10,6 +10,7 @@ import './App.css'
 import CreateProfile from './pages/GetDataProfile'
 import ClientForm from './pages/ClientFormPage'
 import ChatWithAI from './pages/ChatWithAI'
+import TaskPage from './pages/Tasks/Tasks'
 
 function App () {
   return (
@@ -23,6 +24,7 @@ function App () {
         <Route path='/CreateProfile' element={<CreateProfile />} />
          <Route path='/Articles' element={<ArticlesPage />} />
          <Route path='/ChatWithAI' element={<ChatWithAI />} />
+          <Route path='/TaskPage' element={<TaskPage />} />
       </Routes>
     </>
   )

@@ -1,9 +1,10 @@
-// src/components/chat/ChatInput.tsx
-// Компонент содержащий в себе трекстовое поле для ввода запроса пользователем и кнопку отправки запроса
-// A reusable component that renders the text input field and send button for the user prompt
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styles from './ChatInput.module.scss'
+
+import {
+  ArrowBigUp
+} from 'lucide-react'
 interface ChatInputProps {
   input: string
   setInput: (val: string) => void
@@ -12,26 +13,36 @@ interface ChatInputProps {
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({
-  input, //input: Current text value entered by the user.
-  setInput, //setInput: Function to update the input state.
-  onSend, //onSend: Function to trigger when the send button is clicked.
-  placeholder // placeholder: Optional placeholder text for the textarea.
+  input,
+  setInput,
+  onSend,
+  placeholder
 }) => {
   const { t } = useTranslation()
-  return (
-   <div className="chat-input">
-  <textarea
-    className="chat-input__textarea"
-    placeholder={placeholder}
-    value={input}
-    onChange={e => setInput(e.target.value)}
-  />
-  <button className="chat-input__send" onClick={onSend}>
-    {t('send')}
-  </button>
-</div>
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      onSend()
+    }
+  }
+
+  return (
+    <div className={styles.chatInput}>
+      <div className={styles.text}>
+      <textarea
+        className={styles.textarea}
+        placeholder={placeholder || t('type_message')}
+        value={input}
+        onChange={e => setInput(e.target.value)}
+        onKeyDown={handleKeyPress}
+      />
+      <button className={styles.sendBtn} onClick={onSend}>
+        <ArrowBigUp />
+      </button></div>
+    </div>
   )
 }
 
 export default ChatInput
+

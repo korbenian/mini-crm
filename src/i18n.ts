@@ -63,7 +63,48 @@ const resources = {
         description: 'Description',
         create: 'Create',
         exit: 'Exit'
-      }
+      },tasks: {
+  noTitle: 'Untitled',
+  deadline: 'Deadline',
+  delete: 'Delete',
+  fill: 'Fill',
+  close: 'Close',
+  status: {
+    todo: 'To Do',
+    inProgress: 'In Progress',
+    done: 'Done'
+  }
+},addtask: {
+  search: 'Search task',
+  filter: {
+    all: 'All'
+  },
+  status: {
+    todo: 'To Do',
+    inProgress: 'In Progress',
+    done: 'Done'
+  }
+},taskedit: {
+  titlePlaceholder: 'Enter title',
+  deadline: 'Deadline',
+  create: 'Create',
+  delete: 'Delete'
+},mainTasks: {
+  title: 'Tasks'
+},art: {
+  title: 'Articles',
+  noDescription: 'No description'
+},chat: {
+  title: 'Chat with AI',
+  thinking: 'AI thinks…',
+  empty: 'Write the first question 👇',
+  placeholder: 'Ask me something…'
+}
+
+
+
+
+
     }
   },
 
@@ -129,7 +170,48 @@ const resources = {
         description: 'О себе',
         create: 'Создать',
         exit: 'Выйти'
-      }
+      },tasks: {
+  noTitle: 'Без названия',
+  deadline: 'Дедлайн',
+  delete: 'Удалить',
+  fill: 'Заполнить',
+  close: 'Закрыть',
+  status: {
+    todo: 'К выполнению',
+    inProgress: 'В процессе',
+    done: 'Готово'
+  }
+},addtask: {
+  search: 'Поиск задачи',
+  filter: {
+    all: 'Все'
+  },
+  status: {
+    todo: 'К выполнению',
+    inProgress: 'В процессе',
+    done: 'Готово'
+  }
+},taskedit: {
+  titlePlaceholder: 'Введите название',
+  deadline: 'Дедлайн',
+  create: 'Создать',
+  delete: 'Удалить'
+},mainTasks: {
+  title: 'Задачи'
+},art: {
+  title: 'Статьи',
+  noDescription: 'Нет описания'
+},chat: {
+  title: 'Чат с ИИ',
+  thinking: 'ИИ думает…',
+  empty: 'Задайте первый вопрос 👇',
+  placeholder: 'Спросите меня о чём-нибудь…'
+}
+
+
+
+
+
     }
   },
 
@@ -193,7 +275,48 @@ const resources = {
         description: 'Description',
         create: 'Créer',
         exit: 'Quitter'
-      }
+      },tasks: {
+  noTitle: 'Sans titre',
+  deadline: 'Date limite',
+  delete: 'Supprimer',
+  fill: 'Remplir',
+  close: 'Fermer',
+  status: {
+    todo: 'À faire',
+    inProgress: 'En cours',
+    done: 'Terminé'
+  }
+},addtask: {
+  search: 'Rechercher une tâche',
+  filter: {
+    all: 'Toutes'
+  },
+  status: {
+    todo: 'À faire',
+    inProgress: 'En cours',
+    done: 'Terminée'
+  }
+},taskedit: {
+  titlePlaceholder: 'Entrez le titre',
+  deadline: 'Date limite',
+  create: 'Créer',
+  delete: 'Supprimer'
+},mainTasks: {
+  title: 'Tâches'
+},art: {
+  title: 'Articles',
+  noDescription: 'Aucune description'
+},chat: {
+  title: 'Chat avec IA',
+  thinking: 'L’IA réfléchit…',
+  empty: 'Posez la première question 👇',
+  placeholder: 'Demandez-moi quelque chose…'
+}
+
+
+
+
+
     }
   },
 
@@ -256,7 +379,47 @@ const resources = {
         description: 'Beschreibung',
         create: 'Erstellen',
         exit: 'Abmelden'
-      }
+      },tasks: {
+  noTitle: 'Ohne Titel',
+  deadline: 'Frist',
+  delete: 'Löschen',
+  fill: 'Ausfüllen',
+  close: 'Schließen',
+  status: {
+    todo: 'Zu erledigen',
+    inProgress: 'In Bearbeitung',
+    done: 'Erledigt'
+  }
+},addtask: {
+  search: 'Aufgabe suchen',
+  filter: {
+    all: 'Alle'
+  },
+  status: {
+    todo: 'Zu erledigen',
+    inProgress: 'In Bearbeitung',
+    done: 'Erledigt'
+  }
+},taskedit: {
+  titlePlaceholder: 'Titel eingeben',
+  deadline: 'Frist',
+  create: 'Erstellen',
+  delete: 'Löschen'
+},mainTasks: {
+  title: 'Aufgaben'
+},art: {
+  title: 'Artikel',
+  noDescription: 'Keine Beschreibung'
+},chat: {
+  title: 'Chat mit KI',
+  thinking: 'KI denkt nach…',
+  empty: 'Stelle die erste Frage 👇',
+  placeholder: 'Frag mich etwas…'
+}
+
+
+
+
     }
   },
 
@@ -320,7 +483,47 @@ const resources = {
         description: 'Beschrijving',
         create: 'Aanmaken',
         exit: 'Uitloggen'
-      }
+      },tasks: {
+  noTitle: 'Zonder titel',
+  deadline: 'Deadline',
+  delete: 'Verwijderen',
+  fill: 'Invullen',
+  close: 'Sluiten',
+  status: {
+    todo: 'Te doen',
+    inProgress: 'Bezig',
+    done: 'Klaar'
+  }
+},addtask: {
+  search: 'Taak zoeken',
+  filter: {
+    all: 'Alles'
+  },
+  status: {
+    todo: 'Te doen',
+    inProgress: 'Bezig',
+    done: 'Klaar'
+  }
+},taskedit: {
+  titlePlaceholder: 'Titel invoeren',
+  deadline: 'Deadline',
+  create: 'Aanmaken',
+  delete: 'Verwijderen'
+},mainTasks: {
+  title: 'Taken'
+},art: {
+  title: 'Artikelen',
+  noDescription: 'Geen beschrijving'
+},chat: {
+  title: 'Chat met AI',
+  thinking: 'AI denkt na…',
+  empty: 'Stel de eerste vraag 👇',
+  placeholder: 'Vraag me iets…'
+}
+
+
+
+
     }
   },
 
@@ -385,7 +588,47 @@ const resources = {
         description: 'Opis',
         create: 'Utwórz',
         exit: 'Wyloguj'
-      }
+      },tasks: {
+  noTitle: 'Bez tytułu',
+  deadline: 'Termin',
+  delete: 'Usuń',
+  fill: 'Wypełnij',
+  close: 'Zamknij',
+  status: {
+    todo: 'Do zrobienia',
+    inProgress: 'W trakcie',
+    done: 'Gotowe'
+  }
+},addtask: {
+  search: 'Szukaj zadania',
+  filter: {
+    all: 'Wszystkie'
+  },
+  status: {
+    todo: 'Do zrobienia',
+    inProgress: 'W trakcie',
+    done: 'Gotowe'
+  }
+},taskedit: {
+  titlePlaceholder: 'Wpisz tytuł',
+  deadline: 'Termin',
+  create: 'Utwórz',
+  delete: 'Usuń'
+},mainTasks: {
+  title: 'Zadania'
+},art: {
+  title: 'Artykuły',
+  noDescription: 'Brak opisu'
+},chat: {
+  title: 'Czat z AI',
+  thinking: 'AI myśli…',
+  empty: 'Zadaj pierwsze pytanie 👇',
+  placeholder: 'Zapytaj mnie o coś…'
+}
+
+
+
+
     }
   }
 }

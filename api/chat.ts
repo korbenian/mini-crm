@@ -1,13 +1,22 @@
 //C:\Users\User\mini-crm\api\chat.ts
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 import axios from 'axios'
 
-export default async function handler(req: any, res: any) {
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
+console.log('API KEY:', process.env.OPENROUTER_API_KEY)
 
   try {
     const { message } = req.body
+
+    if (!message) {
+      return res.status(400).json({ error: 'No message provided' })
+    }
 
     const response = await axios.post(
       'https://openrouter.ai/api/v1/chat/completions',
@@ -18,13 +27,19 @@ export default async function handler(req: any, res: any) {
       {
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json'
+          
+          'Content-Type': 'application/json',
+          'HTTP-Referer': 'http://localhost:3000',
+      'X-Title': 'mini-crm'
         }
       }
     )
 
-    return res.status(200).json(response.data)
-  } catch (e) {
-    return res.status(500).json({ error: 'AI error' })
+    res.status(200).json({
+  reply: response.data.choices[0].message.content
+})
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'AI error' })
   }
 }
