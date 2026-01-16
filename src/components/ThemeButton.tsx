@@ -3,8 +3,10 @@ import LightModeIcon from '@mui/icons-material/LightMode'
 import styles from './ThemeButton.module.scss'
 import React, { useState, useEffect } from 'react'
 const ThemeButton = () => {
-  const savedTheme = localStorage.getItem('theme')
-  const [isDark, setIsDark] = useState(savedTheme == 'dark')
+const savedTheme = localStorage.getItem('theme')
+const [isDark, setIsDark] = useState(
+  savedTheme ? savedTheme === 'dark' : true
+)
 
   useEffect(() => {
     document.body.className = isDark ? 'dark-mode' : 'light-mode'
