@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import styles from './DashboardPage.module.scss'
-import { auth, db } from '../firebase'
+import { auth, db } from '../../firebase'
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore'
 import { useTranslation } from 'react-i18next'
-import Input from '../components/Input'
-import Sidebar from '../components/Sidebar'
+import Input from '../../components/Input'
+import Sidebar from '../../components/Sidebar'
 
 type Card = {
   id: string

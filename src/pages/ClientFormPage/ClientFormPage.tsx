@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { auth, db } from '../firebase'
+import { auth, db } from '../../firebase'
 import { Link } from 'react-router-dom'
 import { onAuthStateChanged, User } from 'firebase/auth'
 import { collection, query, where, getDocs,getDoc,doc} from 'firebase/firestore'
 import styles from './ClientFormPage.module.scss'
-import TechSelector from '../components/TechSelector'
-import ThemeButton from '../components/ThemeButton'
+import TechSelector from '../../components/TechSelector'
+
 import { useTranslation } from 'react-i18next'
-import Sidebar from '../components/Sidebar'
-import LanguageSwitcher from '../components/ChangeLanguage'
+import Sidebar from '../../components/Sidebar'
+
 type UserProfile = {
   name: string
   age: number

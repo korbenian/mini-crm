@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { auth, db } from '../firebase'
+import { auth, db } from '../../firebase'
 import { collection, query, where, getDocs, addDoc, setDoc } from 'firebase/firestore'
 import { onAuthStateChanged ,User} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import Input from '../components/Input'
+import Input from '../../components/Input'
 import styles from './GetDataProfile.module.scss'
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
 
 import { Link } from 'react-router-dom'
-import ChangeTheme from '../components/ThemeButton'
+import ChangeTheme from '../../components/ThemeButton'
 import { useTranslation } from 'react-i18next'
-import LanguageSwitcher from '../components/ChangeLanguage'
+import LanguageSwitcher from '../../components/ChangeLanguage'
 type UserProfile = {
   name: string
   age: number

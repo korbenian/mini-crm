@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { useChatLogic } from '../components/useChatLogic'
+import { useChatLogic } from '../../components/useChatLogic'
 import styles from './ChatWithAI.module.scss'
-import ChatInput from '../components/ChatInput'
+import ChatInput from '../../components/ChatInput'
 import { useTranslation } from 'react-i18next'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Sidebar'
 export default function ChatWithAI () {
   const {
     input,

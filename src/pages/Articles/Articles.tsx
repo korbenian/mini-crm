@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react'
-import ArticleModal from './ArticleModal'
+import ArticleModal from '../ArticleModal/ArticleModal'
 import styles from './Articles.module.scss'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Sidebar'
 import { useTranslation } from 'react-i18next'
 export default function ArticlesPage () {
   const [articles, setArticles] = useState<any[]>([])

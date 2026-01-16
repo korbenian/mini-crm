@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase'
+import { auth } from '../../firebase'
 import styles from './RegisterPage.module.scss'
-import Input from '../components/Input'
+import Input from '../../components/Input'
 import { Link } from 'react-router-dom'
-import Button from '../components/Button'
+import Button from '../../components/Button'
 import { useTranslation } from 'react-i18next'
-import ChangeTheme from '../components/ThemeButton'
-import LanguageSwitcher from '../components/ChangeLanguage'
+import ChangeTheme from '../../components/ThemeButton'
+import LanguageSwitcher from '../../components/ChangeLanguage'
 const RegisterPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
