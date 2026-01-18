@@ -16,6 +16,7 @@ type UserProfile = {
   name: string
   age: number
   about: string
+  role: 'admin' | 'user',
   avatarUrl?: string;
 }
 
@@ -25,7 +26,8 @@ const CreateProfile: React.FC = () => {
   const [profileData, setProfileData] = useState<UserProfile>({
     name: '',
     age: 0,
-    about: ''
+    about: '',
+    role: 'user'
   })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -96,6 +98,7 @@ const handleAvatarChange = async (
   name: profileData.name,
   age: profileData.age,
   about: profileData.about,
+  role:profileData.role
 });
       console.log('Профиль создан')
       navigate('/ClientForm')

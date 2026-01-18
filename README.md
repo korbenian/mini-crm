@@ -5,6 +5,22 @@ This project was created as a pet project to practice a modern frontend stack an
 
 ## ✨ Features
 
+## 🖼️ Screenshots
+
+###  📋 Register
+
+![Board](screenshots/Register.jpeg)
+
+###  ❓ AI-Response
+
+![AI](screenshots/ChatWithAI.jpeg)
+
+
+### 🗂️ Tasks
+
+![Trello](screenshots/Tasks.jpeg)
+
+
 - 🔐 **Authentication**
   - Login page
   - Registration page
@@ -76,7 +92,9 @@ To use the AI chat, the project must be started via vercel dev.
 
 Run with AI Support
 npm install -g vercel
-vercel de
+vercel dev
+
+
 ### Standard Run (without AI chat)
 
 ```bash

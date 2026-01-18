@@ -104,7 +104,7 @@ const ClientForm: React.FC = () => {
   onClick={() => setShowTech(prev => !prev)}
 >
   {showTech ? t('hideTech') : t('addTech')}
-</button>
+</button><Link to={'/TariffPlans'}>Планы тарифов</Link>
 </div>
         </p>
         

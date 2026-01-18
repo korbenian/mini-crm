@@ -9,6 +9,7 @@ import CreateProfile from './pages/GetDataProfile/GetDataProfile'
 import ClientForm from './pages/ClientFormPage/ClientFormPage'
 import ChatWithAI from './pages/ChatWithAI/ChatWithAI'
 import TaskPage from './pages/Tasks/Tasks'
+import TariffPlans from './pages/adminPlan/plans'
 
 function App () {
   return (
@@ -23,6 +24,7 @@ function App () {
          <Route path='/Articles' element={<ArticlesPage />} />
          <Route path='/ChatWithAI' element={<ChatWithAI />} />
           <Route path='/TaskPage' element={<TaskPage />} />
+          <Route path='/TariffPlans' element={<TariffPlans />} />
       </Routes>
     </>
   )

@@ -1,0 +1,32 @@
+.wrappertariff{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    height: 100%;
+    width: 100%;
+}
+.tariffs{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.sis{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+}
+.tariffCard{
+    display: flex;
+    gap: 10%;
+    border-style: double;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ border-radius: 2rem;
+ border-color: aliceblue;
+    width: 25%;
+    height: 50%;
+}
