@@ -123,3 +123,6 @@ Integrate an AI chat into a real application
 🧩 User roles and permissions
 
 ☁️ Backend and database integration
+
+
+Vercel - https://vercel.com/sergey-korobovs-projects/mini-crm
