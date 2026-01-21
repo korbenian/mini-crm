@@ -1,168 +1,60 @@
+/* DashboardPage.module.scss */
+
 .DashBoardPage {
+  display: flex;
   min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-}
-.Sidebar {
-  flex-shrink: 0;
-}
-.mainContent {
-  flex: 1;
-  margin-left: 15%; 
-}
-#root {
-  min-height: 100%;
-}
-html,
-body {
-  height: 100%;
-}
-.Name {
-  margin-right: 2%;
-}
-.Age {
-  margin-right: 2%;
-}
-.cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  align-items: center;
-}
-.card {
-  background: #4b4545;
-  padding: 15px;
-  border-radius: 8px;
-  width: 300px;
-  color: #fff;
-}
-.form {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10px;
-}
-.topSection {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.name {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0 0 8px;
-}
-.age {
-  font-size: 14px;
-  color: #bbbbbb;
-  margin-bottom: 8px;
-}
-.getName {
-  margin-right: 2vh;
-}
-.getAge {
-  margin-right: 2vh;
-}
-.getDescription {
-  margin-right: 2vh;
-}
-.ExitBox {
-  display: flex;
-  margin-left: 9vh;
-  margin: 12px;
-}
-.exit {
-  margin: 20px;
-  color: #8a2020;
-}
-.exit:hover {
-  color: #e22c2c;
-}
-.CreateProfile {
-  margin: 20px;
-}
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
 
-  &__card {
-    position: relative;
-    padding: 20px;
-    border-radius: 18px;
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-    transition: all 0.25s ease;
-    cursor: default;
 
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+
+  .Sidebar {
+    /* ширина боковой панели */
+
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+  }
+
+  .mainContent {
+    flex: 1;
+    padding: 2rem;
+margin-left: 15%;
+    .pageTitle {
+      font-size: 2rem;
+      margin-bottom: 2rem;
     }
 
-    // акцентная полоска
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      border-left: 4px solid #f59e0b; // amber
-      pointer-events: none;
+    .metrics {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+
+      .metricCard {
+       border-style: inset;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        flex: 1 1 200px;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: default;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        }
+
+        .metricTitle {
+          font-size: 1rem;
+          
+          margin-bottom: 0.5rem;
+        }
+
+        .metricValue {
+          font-size: 2.2rem;
+          font-weight: bold;
+          
+        }
+      }
     }
-  }
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  &__label {
-    font-size: 14px;
-    color: #6b7280;
-    letter-spacing: 0.02em;
-  }
-
-  &__value {
-    width: 15%;
-    font-size: 28px;
-    font-weight: 600;
-    color: #111827;
-  }
-
-  &__sub {
-    font-size: 12px;
-    color: #9ca3af;
-  }
-}
-
-/* 🌙 Dark mode */
-.dark .metrics {
-  &__card {
-    background: #0f172a;
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-
-    &::before {
-      border-left-color: #fbbf24;
-    }
-  }
-
-  &__label {
-    color: #9ca3af;
-  }
-
-  &__value {
-    color: #f9fafb;
-    background-color: #9ca3af;
-    width: 15%;
-  }
-
-  &__sub {
-    color: #6b7280;
   }
 }

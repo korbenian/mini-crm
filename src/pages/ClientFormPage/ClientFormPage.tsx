@@ -65,11 +65,9 @@ const ClientForm: React.FC = () => {
      <div className={styles.Sidebar}>
         <Sidebar />
       </div>
-      <div>
+      <div className={styles.main}>
         <p className={styles.options}>
-          <Link className={styles.options_first} to='/EditProfile'>
-            {t('profile.edit')}
-          </Link>
+          
        
            <div className={styles.dataUser}>
   <h1>{t('profile.profile')}</h1>
@@ -96,7 +94,9 @@ const ClientForm: React.FC = () => {
   </span>
   <p className={styles.techList + ' ' + (!showTech ? styles.hidden : '')}>
   <TechSelector onChange={list => setTechStack(list)} />
-
+<Link className={styles.options_first} to='/EditProfile'>
+            {t('profile.edit')}
+          </Link>
 </p>
 
 <button
@@ -104,7 +104,7 @@ const ClientForm: React.FC = () => {
   onClick={() => setShowTech(prev => !prev)}
 >
   {showTech ? t('hideTech') : t('addTech')}
-</button><Link to={'/TariffPlans'}>Планы тарифов</Link>
+</button><Link to="/TariffPlans">{t('tariff.plans')}</Link>
 </div>
         </p>
         

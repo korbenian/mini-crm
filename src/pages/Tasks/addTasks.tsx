@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { collection, addDoc, onSnapshot } from 'firebase/firestore'
-import { db } from '../../firebase'
+import { db,auth } from '../../firebase'
 import TaskView from './TaskView'
 import { useTranslation } from 'react-i18next'
 import { Task } from '../../types/task'
@@ -11,14 +11,22 @@ export default function AddTask() {
   const { t } = useTranslation()
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('All')
+const user = auth.currentUser
+ useEffect(() => {
+  if (!user) return
 
-  useEffect(() => {
-    const unsub = onSnapshot(collection(db, 'cards'), snap => {
-      const data = snap.docs.map(d => ({ id: d.id, ...d.data() })) as Task[]
+  const unsub = onSnapshot(
+    collection(db, 'cards'),
+    snap => {
+      const data = snap.docs
+        .map(d => ({ id: d.id, ...d.data() } as Task))
+        .filter(task => task.uid === user.uid) // ← фильтр по текущему пользователю
       setTasks(data)
-    })
-    return unsub
-  }, [])
+    }
+  )
+
+  return unsub
+}, [user])
 
   const filteredTasks = tasks.filter(task => {
     const matchesTitle = (task.title || '').toLowerCase().includes(searchQuery.toLowerCase())
@@ -26,16 +34,18 @@ export default function AddTask() {
     return matchesTitle && matchesStatus
   })
 
-  const handleNewTask = async () => {
-    await addDoc(collection(db, 'cards'), {
-      title: '',
-      deadline: '',
-      status: 'To Do',
-      isDone: false,
-      createdAt: new Date(),
-      isEditing: true
-    })
-  }
+const handleNewTask = async () => {
+  if (!user) return
+  await addDoc(collection(db, 'cards'), {
+    title: '',
+    deadline: '',
+    status: 'To Do',
+    isDone: false,
+    createdAt: new Date(),
+    isEditing: true,
+    uid: user.uid // сохраняем именно uid
+  })
+}
 
   return (
   <div className={styles.addTaskPage}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { auth, db } from '../../firebase'
-import { collection, query, where, getDocs, addDoc, setDoc } from 'firebase/firestore'
+import { collection, query, where, getDocs, addDoc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { onAuthStateChanged ,User} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import Input from '../../components/Input'
@@ -12,12 +12,14 @@ import { Link } from 'react-router-dom'
 import ChangeTheme from '../../components/ThemeButton'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../../components/ChangeLanguage'
-type UserProfile = {
+import Sidebar from '../../components/Sidebar'
+export type UserProfile = {
   name: string
   age: number
   about: string
   role: 'admin' | 'user',
   avatarUrl?: string;
+  
 }
 
 const CreateProfile: React.FC = () => {
@@ -27,7 +29,7 @@ const CreateProfile: React.FC = () => {
     name: '',
     age: 0,
     about: '',
-    role: 'user'
+    role: 'user',
   })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -94,11 +96,12 @@ const handleAvatarChange = async (
       }
 
       await setDoc(doc(db, "users", firebaseUser.uid), {
-  uid: firebaseUser.uid,
+ uid: firebaseUser.uid,
   name: profileData.name,
   age: profileData.age,
   about: profileData.about,
-  role:profileData.role
+  role: profileData.role,
+  createdAt: serverTimestamp() 
 });
       console.log('Профиль создан')
       navigate('/ClientForm')
@@ -112,15 +115,9 @@ const handleAvatarChange = async (
 
   return (
     <div className={styles.wrapper}>
-      <p className={styles.ExitBox}>
-        <Link className={styles.exit} to='/Dashboard'>
-          {t('createprofile.exit')}
-        </Link>
-        <ChangeTheme />
-        <LanguageSwitcher/>
-        
-      </p>
+     <Sidebar/>
       <div className={styles.create_account}>
+        <div className={styles.true_reg}>
         <h1 className={styles.title}>{t('createprofile.createprofile')}</h1>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {firebaseUser && (
@@ -158,7 +155,7 @@ const handleAvatarChange = async (
           }
         />
         <button onClick={handleSaveProfile}>{t('createprofile.create')}</button>
-      </div>
+      </div></div>
     </div>
   )
 }

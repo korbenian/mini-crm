@@ -12,11 +12,28 @@ import styles from './Sidebar.module.scss'
 import ChangeTheme from '../components/ThemeButton'
 import ChangeLanguage from '../components/ChangeLanguage'
 import { useTranslation } from 'react-i18next'
+import { auth, db } from '../firebase'
+import {  doc, getDoc } from 'firebase/firestore'
 
 
 
 export default function Sidebar () {
     const { t } = useTranslation()
+      const [role, setRole] = useState<string | null>(null)
+  useEffect(() => {
+    const fetchRole = async () => {
+      const currentUser = auth.currentUser
+      if (!currentUser) return
+
+      const snap = await getDoc(doc(db, 'users', currentUser.uid))
+      if (snap.exists()) {
+        setRole(snap.data().role)
+      }
+    }
+
+    fetchRole()
+  }, [])
+
   return (
 
       <div className={styles.container}>
@@ -49,6 +66,13 @@ export default function Sidebar () {
         </nav>
         <div> <ChangeTheme />
         <div className={styles.ChangeLanguage} ><ChangeLanguage /></div>
+        {role === 'admin' && (
+        <>
+          <Link to="/admin/users">Users</Link>
+          <Link to="/admin/cards">All Cards</Link>
+          <Link to="/admin/analytics">Analytics</Link>
+        </>
+      )}
                 </div>
         <div className={styles.accext}>   
                 <Link className={styles.buttons} to='/CreateProfile'>

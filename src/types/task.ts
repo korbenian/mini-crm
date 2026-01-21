@@ -5,4 +5,5 @@ export type Task = {
   isDone: boolean
   status: string
   isEditing: boolean
+  uid:string
 }

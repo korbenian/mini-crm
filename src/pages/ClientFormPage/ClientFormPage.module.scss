@@ -1,85 +1,141 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ClientFormPage.module.scss */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+height: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
-html,
-body {
+.Sidebar {
+ 
+
+
+  box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+}
+
+.dataUser {
+  flex: 1;
+  padding: 2rem;
   width: 100%;
   height: 100%;
-}
-.Sidebar {
+  margin: auto;
+margin-left: 14%;
+  border-radius: 12px;
 
-  position: fixed;
-  left: 0%;
-}
-.wrapper {
-  width: 100%;
-  max-width: 1536px;
+
+
+
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+    letter-spacing: 0.5px;
+  }
+
+  .avatar {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    object-fit: cover;
+
+
+
   
+  }
 
-
-  display: flex;
-  flex-direction: column;
-}
-
-.dataUser {
-  display: flex;
-  gap: 2vh;
-  flex-direction: column;
-  justify-content: center;
-}
-.options {
-  margin-right: 5vh;
-  margin-bottom: 66%;
-}
-.options_first {
-  margin-right: 8px;
-  color: rgb(21, 111, 190);
-}
-.options_first:hover {
-  color: rgb(0, 136, 255);
-}
-
-.options_second {
-  color: rgb(158, 12, 12);
-}
-.options_second:hover {
-  color: rgb(253, 0, 0);
-}
-.dataUser {
-  .techToggleButton {
-    width: 33%;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px; // rounded-3xl
-    font-weight: 500;
-    background-color: #f59e0b; // bg-amber-500
-    color: #fff;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-
-    &:hover {
-      background-color: #d97706; // hover:bg-amber-600
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1); // hover:shadow-md
+  p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    line-height: 1.5;
+    strong {
+      color: #555;
     }
+  }
 
-    transition: background-color 0.3s;
+  .techText {
+    display: block;
+    font-weight: 500;
+    margin-top: 1rem;
+    color: #007bff;
+    transition: color 0.3s ease;
+
+   
   }
 
   .techList {
-    margin-top: 1rem; // mt-4
-    opacity: 1;
-    transition: opacity 0.5s;
+    margin-top: 0.5rem;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    overflow: hidden;
 
     &.hidden {
+      max-height: 0;
       opacity: 0;
-      display: none; // или можно оставить display:block и использовать max-height для анимации
+      pointer-events: none;
+    }
+  }
+
+  .techToggleButton {
+    display: block;
+    margin: 1rem 0;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(90deg, #0056b3, #003f7f);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
-    .techText {
-      font-size: 0.875rem; // text-sm
-      opacity: 0.8;
-      margin-top: 0.5rem; // mt-2
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+  }
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  .options_first {
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #0056b3;
+      text-decoration: underline;
     }
   }
 }

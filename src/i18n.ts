@@ -13,6 +13,8 @@ const resources = {
   title: 'Registration',
   haveAccount: 'Do you have an account?',
   link: 'Click here'
+},tariff: {
+  plans: 'Tariff Plans'
 },
       login: {
         title: 'Login',
@@ -27,7 +29,14 @@ const resources = {
   articles: 'Articles',
   tasks: 'Tasks',
   chat: 'Chat with AI'
-},
+},dashboardMetrics: {
+  title: 'Dashboard',
+  totalUsers: 'Total Users',
+  totalCards: 'Total Cards',
+  avgAge: 'Average Age',
+  myCards: 'My Cards'
+}
+,
       dashboard: {
         age: 'Age',
         name: 'Name',
@@ -118,6 +127,9 @@ const resources = {
   haveAccount: 'У вас есть аккаунт?',
   link: 'Нажмите здесь'
 }
+,tariff: {
+  plans: 'Планы тарифов'
+}
 ,
       login: {
         title: 'Вход',
@@ -133,6 +145,13 @@ const resources = {
   articles: 'Статьи',
   tasks: 'Задачи',
   chat: 'Чат с ИИ'
+}
+,dashboardMetrics: {
+  title: 'Дашборд',
+  totalUsers: 'Всего пользователей',
+  totalCards: 'Всего карточек',
+  avgAge: 'Средний возраст',
+  myCards: 'Ваши карточки'
 }
 ,
       dashboard: {
@@ -229,6 +248,15 @@ const resources = {
   articles: 'Articles',
   tasks: 'Tâches',
   chat: 'Chat avec IA'
+},tariff: {
+  plans: 'Forfaits'
+}
+,dashboardMetrics: {
+  title: 'Tableau de bord',
+  totalUsers: 'Nombre total d’utilisateurs',
+  totalCards: 'Nombre total de cartes',
+  avgAge: 'Âge moyen',
+  myCards: 'Mes cartes'
 }
 ,
       login: {
@@ -334,7 +362,17 @@ const resources = {
   articles: 'Artikel',
   tasks: 'Aufgaben',
   chat: 'Chat mit KI'
-},
+},dashboardMetrics: {
+  title: 'Dashboard',
+  totalUsers: 'Gesamtanzahl Nutzer',
+  totalCards: 'Gesamtanzahl Karten',
+  avgAge: 'Durchschnittsalter',
+  myCards: 'Meine Karten'
+},tariff: {
+  plans: 'Tarifpläne'
+}
+
+,
       login: {
         title: 'Anmelden',
         email: 'E-Mail',
@@ -438,6 +476,16 @@ const resources = {
   tasks: 'Taken',
   chat: 'Chat met AI'
 }
+,dashboardMetrics: {
+  title: 'Dashboard',
+  totalUsers: 'Totaal gebruikers',
+  totalCards: 'Totaal kaarten',
+  avgAge: 'Gemiddelde leeftijd',
+  myCards: 'Mijn kaarten'
+}
+,tariff: {
+  plans: 'Tariefplannen'
+}
 ,
       login: {
         title: 'Inloggen',
@@ -532,7 +580,17 @@ const resources = {
       loading: {
         loading: 'Ładowanie...',
         loadingdata: 'Ładowanie danych użytkownika'
-      },
+      },dashboardMetrics: {
+  title: 'Panel',
+  totalUsers: 'Łączna liczba użytkowników',
+  totalCards: 'Łączna liczba kart',
+  avgAge: 'Średni wiek',
+  myCards: 'Moje karty'
+},tariff: {
+  plans: 'Plany taryf'
+}
+,
+
       registration: {
   title: 'Rejestracja',
   haveAccount: 'Czy masz konto?',
