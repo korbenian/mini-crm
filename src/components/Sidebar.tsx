@@ -66,21 +66,26 @@ export default function Sidebar () {
         </nav>
         <div> <ChangeTheme />
         <div className={styles.ChangeLanguage} ><ChangeLanguage /></div>
+        
+                </div>
+<div className={styles.adminPanel}>
         {role === 'admin' && (
         <>
           <Link to="/admin/users">Users</Link>
           <Link to="/admin/cards">All Cards</Link>
+
           <Link to="/admin/analytics">Analytics</Link>
         </>
-      )}
-                </div>
+      )}</div>
+<div className={styles.wrapaccext
+}>
         <div className={styles.accext}>   
                 <Link className={styles.buttons} to='/CreateProfile'>
                   {t('dashboard.account')}
                 </Link>
                 <Link className={styles.exitx} to='/'>
                   {t('dashboard.exit')}
-                </Link></div>
+                </Link></div></div>
       </div>
 
   )

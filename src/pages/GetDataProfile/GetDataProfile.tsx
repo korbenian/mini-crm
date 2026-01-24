@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { auth, db } from '../../firebase'
-import { collection, query, where, getDocs, addDoc, setDoc, serverTimestamp } from 'firebase/firestore'
+import { collection, query, where, getDocs, setDoc, serverTimestamp } from 'firebase/firestore'
 import { onAuthStateChanged ,User} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import Input from '../../components/Input'
 import styles from './GetDataProfile.module.scss'
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc } from "firebase/firestore";
-
-import { Link } from 'react-router-dom'
-import ChangeTheme from '../../components/ThemeButton'
+import { doc} from "firebase/firestore";
 import { useTranslation } from 'react-i18next'
-import LanguageSwitcher from '../../components/ChangeLanguage'
 import Sidebar from '../../components/Sidebar'
 export type UserProfile = {
   name: string
@@ -25,6 +21,8 @@ export type UserProfile = {
 const CreateProfile: React.FC = () => {
   const [firebaseUser, setFirebaseUser] = useState<User | null>(null)
   const { t } = useTranslation()
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
+const [avatarLoading, setAvatarLoading] = useState(false)
   const [profileData, setProfileData] = useState<UserProfile>({
     name: '',
     age: 0,
@@ -61,22 +59,33 @@ const storage = getStorage();
 
 const handleAvatarChange = async (
   e: React.ChangeEvent<HTMLInputElement>
-): Promise<void> => {
-  const file = e.target.files?.[0];
-  if (!file) return;
+) => {
+  const file = e.target.files?.[0]
+  if (!file) return
 
-  const user = auth.currentUser;
-  if (!user) return;
+  const user = auth.currentUser
+  if (!user) return
 
-  const avatarRef = ref(storage, `avatars/${user.uid}`);
-  await uploadBytes(avatarRef, file);
+  try {
+    setAvatarLoading(true)
 
-  const url = await getDownloadURL(avatarRef);
+    const avatarRef = ref(storage, `avatars/${user.uid}`)
+    await uploadBytes(avatarRef, file)
 
-  await updateDoc(doc(db, "users", user.uid), {
-    avatarUrl: url,
-  });
-};
+    const url = await getDownloadURL(avatarRef)
+    setAvatarUrl(url)
+
+    console.log('AVATAR UPLOADED:', url)
+  } catch (err) {
+    console.error('AVATAR ERROR:', err)
+    alert('Ошибка загрузки аватара')
+  } finally {
+    setAvatarLoading(false)
+  }
+}
+
+
+
 
 
   const handleSaveProfile = async () => {
@@ -100,6 +109,7 @@ const handleAvatarChange = async (
   name: profileData.name,
   age: profileData.age,
   about: profileData.about,
+    avatarUrl: avatarUrl,
   role: profileData.role,
   createdAt: serverTimestamp() 
 });
@@ -154,7 +164,12 @@ const handleAvatarChange = async (
             setProfileData({ ...profileData, about: e.target.value })
           }
         />
-        <button onClick={handleSaveProfile}>{t('createprofile.create')}</button>
+     <button
+  onClick={handleSaveProfile}
+  disabled={avatarLoading}
+>
+  {avatarLoading ? 'Загрузка аватара...' : t('createprofile.create')}
+</button>
       </div></div>
     </div>
   )
