@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { auth, db } from '../../firebase'
-import { Link } from 'react-router-dom'
-import { onAuthStateChanged, User } from 'firebase/auth'
-import { collection, query, where, getDocs,getDoc,doc, onSnapshot} from 'firebase/firestore'
+import { db } from '../../firebase'
+import { collection, onSnapshot} from 'firebase/firestore'
 import styles from './users.module.scss'
-import TechSelector from '../../components/TechSelector'
-
 import { useTranslation } from 'react-i18next'
 import Sidebar from '../../components/Sidebar'
 
@@ -23,8 +19,6 @@ const AllUsers: React.FC = () => {
 
 const [users, setUsers] = useState<UserProfile[]>([])
 const [loading, setLoading] = useState(true)
-
-  const [profileData, setProfileData] = useState<UserProfile | null>(null)
   const { t } = useTranslation()
   useEffect(() => {
   const usersRef = collection(db, 'users')

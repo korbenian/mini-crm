@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useTranslation } from 'react-i18next'
-
 import styles from './LoginPage.module.scss'
 import Input from '../../components/Input'
 import Button from '../../components/Button'

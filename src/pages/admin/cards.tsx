@@ -1,7 +1,7 @@
 //C:\Users\User\mini-crm\src\pages\admin\cards.tsx
 import { useEffect, useState } from 'react'
-import { collection, addDoc, onSnapshot, getDoc } from 'firebase/firestore'
-import { db,auth } from '../../firebase'
+import { collection, onSnapshot, getDoc } from 'firebase/firestore'
+import { db} from '../../firebase'
 import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -9,17 +9,11 @@ import { Task } from '../../types/task'
 import TaskEditing from '../Tasks/TaskEditing'
  import styles from './cards.module.scss'
 import Sidebar from '../../components/Sidebar'
- type TaskWithUser = Task & {
-  userName?: string
-}
  const AllCards = () => {
   const [tasks, setTasks] = useState<Task[]>([])
-const [usersMap, setUsersMap] = useState<Record<string, string>>({})
-
-  const [nameuser, setNameUser] = useState()
   const [editingId, setEditingId] = useState<string | null>(null)
   const { t } = useTranslation()
-  const user = auth.currentUser
+
 useEffect(() => {
   const unsub = onSnapshot(collection(db, 'cards'), async snap => {
     const tasks = await Promise.all(

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useId } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './EditProfile.module.scss'
 import { auth, db } from '../../firebase'
 import { Link } from 'react-router-dom'

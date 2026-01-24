@@ -4,7 +4,7 @@ import { db,auth } from '../../firebase'
 import TaskView from './TaskView'
 import { useTranslation } from 'react-i18next'
 import { Task } from '../../types/task'
-import styles from './tasks.module.scss' // импорт модуля
+import styles from './tasks.module.scss' 
 
 export default function AddTask() {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -20,7 +20,7 @@ const user = auth.currentUser
     snap => {
       const data = snap.docs
         .map(d => ({ id: d.id, ...d.data() } as Task))
-        .filter(task => task.uid === user.uid) // ← фильтр по текущему пользователю
+        .filter(task => task.uid === user.uid) 
       setTasks(data)
     }
   )
@@ -43,7 +43,7 @@ const handleNewTask = async () => {
     isDone: false,
     createdAt: new Date(),
     isEditing: true,
-    uid: user.uid // сохраняем именно uid
+    uid: user.uid 
   })
 }
 
