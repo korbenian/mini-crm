@@ -12,6 +12,7 @@ import TaskPage from './pages/Tasks/Tasks'
 import TariffPlans from './pages/adminPlan/plans'
 import AllCards from './pages/admin/cards'
 import AllUsers from './pages/admin/users'
+import Analytics from './pages/admin/Analytics'
 
 function App () {
   return (
@@ -29,6 +30,7 @@ function App () {
           <Route path='/TariffPlans' element={<TariffPlans />} />
             <Route path="/admin/cards" element={<AllCards />} />
              <Route path="/admin/users" element={<AllUsers />} />
+             <Route path="/admin/Analytics" element={<Analytics />} />
       </Routes>
     </>
   )

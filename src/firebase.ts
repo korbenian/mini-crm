@@ -8,7 +8,7 @@ const firebaseConfig = {
   apiKey: 'AIzaSyB7Oeh8A-avtdw1zeYXK4t-Aivqn8qaRbk',
   authDomain: 'mini-crm-59748.firebaseapp.com',
   projectId: 'mini-crm-59748',
-  storageBucket: 'mini-crm-59748.appspot.com', // <-- исправлено
+  storageBucket: 'mini-crm-59748.appspot.com', 
   messagingSenderId: '935891437255',
   appId: '1:935891437255:web:981f1428d16d1f4271e0e2',
   measurementId: 'G-KWQPND2BB0'

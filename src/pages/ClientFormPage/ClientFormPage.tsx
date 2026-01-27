@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../firebase'
 import { Link } from 'react-router-dom'
 import { onAuthStateChanged, User } from 'firebase/auth'
-import { collection, query, where, getDocs,getDoc,doc} from 'firebase/firestore'
+import {getDoc,doc} from 'firebase/firestore'
 import styles from './ClientFormPage.module.scss'
 import TechSelector from '../../components/TechSelector'
-
 import { useTranslation } from 'react-i18next'
 import Sidebar from '../../components/Sidebar'
 
@@ -66,7 +65,7 @@ const ClientForm: React.FC = () => {
         <Sidebar />
       </div>
       <div className={styles.main}>
-        <p className={styles.options}>
+        <div className={styles.options}>
           
        
            <div className={styles.dataUser}>
@@ -90,13 +89,11 @@ const ClientForm: React.FC = () => {
   <p>
     <strong>{t('profile.aboutuser')}:</strong> {profileData.about}
   </p>    <span className={styles.techText}>
-    {t('technologies')} = {techStack.join(', ')}
+    {t('profile.technologies')} : {techStack.join(', ')}
   </span>
   <p className={styles.techList + ' ' + (!showTech ? styles.hidden : '')}>
   <TechSelector onChange={list => setTechStack(list)} />
-<Link className={styles.options_first} to='/EditProfile'>
-            {t('profile.edit')}
-          </Link>
+
 </p>
 
 <button
@@ -104,12 +101,17 @@ const ClientForm: React.FC = () => {
   onClick={() => setShowTech(prev => !prev)}
 >
   {showTech ? t('hideTech') : t('addTech')}
-</button><Link to="/TariffPlans">{t('tariff.plans')}</Link>
+</button>
+<Link className={styles.tariffs} to="/TariffPlans">{t('tariff.plans')}</Link>
+<Link className={styles.options_first} to='/EditProfile'>
+            {t('profile.edit')}
+          </Link>
 </div>
-        </p>
+
         
       </div>
     
+        </div>
 </div>
 
     

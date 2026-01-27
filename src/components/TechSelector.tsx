@@ -7,7 +7,7 @@ import {
 import { useEffect, useState } from 'react'
 import { db } from '../firebase'
 import { getAuth } from 'firebase/auth'
-
+import { useTranslation } from 'react-i18next'
 interface TechSelectorProps {
   onChange?: (techs: string[]) => void
 }
@@ -29,7 +29,7 @@ export default function TechSelector ({ onChange }: TechSelectorProps) {
   const [selected, setSelected] = useState<string[]>([])
   const [isAddingCustom, setIsAddingCustom] = useState(false)
   const [customValue, setCustomValue] = useState('')
-
+  const { t } = useTranslation()
   const auth = getAuth()
   const user = auth.currentUser
 
@@ -52,7 +52,6 @@ export default function TechSelector ({ onChange }: TechSelectorProps) {
     loadTechStack()
   }, [user])
 
-  // 🔹 toggle технологии
   const toggleTech = async (tech: string) => {
     if (!user) return
 
@@ -72,7 +71,7 @@ export default function TechSelector ({ onChange }: TechSelectorProps) {
     )
   }
 
-  // 🔹 добавление кастомной технологии
+  
   const addCustomTech = async () => {
     const tech = customValue.trim()
     if (!tech || !user) return
@@ -113,26 +112,26 @@ export default function TechSelector ({ onChange }: TechSelectorProps) {
       {!isAddingCustom && (
         <button
           onClick={() => setIsAddingCustom(true)}
-          className='px-3 py-1 rounded-full border border-dashed border-gray-400 text-gray-500'
+          className=''
         >
-          + Другая...
+          + {t('profile.other')}
         </button>
       )}
 
       {isAddingCustom && (
-        <div className='flex gap-2'>
+        <div className=''>
           <input
             type='text'
-            placeholder='Введите технологию'
+            placeholder={t('profile.enterTechnology')}
             value={customValue}
             onChange={e => setCustomValue(e.target.value)}
-            className='px-2 py-1 border rounded'
+            className=''
           />
           <button
             onClick={addCustomTech}
-            className='px-3 py-1 bg-green-600 text-white rounded'
+            className=''
           >
-            Добавить
+            {t('profile.add')}
           </button>
         </div>
       )}

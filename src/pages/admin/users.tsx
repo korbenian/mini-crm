@@ -61,7 +61,7 @@ return (
 
           {user.techStack?.length && (
             <span className={styles.techText}>
-              {t('technologies')}: {user.techStack.join(', ')}
+              {t('profile.technologies')}: {user.techStack.join(', ')}
             </span>
           )}
         </div>

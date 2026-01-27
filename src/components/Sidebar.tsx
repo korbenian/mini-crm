@@ -74,7 +74,7 @@ export default function Sidebar () {
           <Link to="/admin/users">Users</Link>
           <Link to="/admin/cards">All Cards</Link>
 
-          <Link to="/admin/analytics">Analytics</Link>
+          <Link to="/admin/Analytics">Analytics</Link>
         </>
       )}</div>
 <div className={styles.wrapaccext

@@ -1,4 +1,3 @@
-import { Description } from '@mui/icons-material'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
@@ -53,7 +52,11 @@ const resources = {
         age: 'Age',
         name: 'Name',
         exit: 'Exit',
+        technologies:'technologies',
         edit: 'Edit',
+        enterTechnology: 'Enter technology',
+        add: 'Add',
+        other: 'Other...',
         profile: 'Profile',
         aboutuser: 'About me',
         email: 'Email'
@@ -170,6 +173,10 @@ const resources = {
         age: 'Возраст',
         name: 'Имя',
         exit: 'Выйти',
+        add: 'Добавить',
+        enterTechnology: 'Введите технологию',
+        other: 'Другая...',
+        technologies:'Технологии',
         edit: 'Редактировать',
         profile: 'Профиль',
         aboutuser: 'О себе',
@@ -284,7 +291,11 @@ const resources = {
         age: 'Âge',
         name: 'Nom',
         exit: 'Quitter',
+        enterTechnology: 'Entrez la technologie',
+        other: 'Autre...',
+        add: 'Ajouter',
         edit: 'Modifier',
+        technologies:'technologies',
         profile: 'Profil',
         aboutuser: 'À propos de moi',
         email: 'Email'
@@ -399,7 +410,11 @@ const resources = {
         name: 'Name',
         exit: 'Abmelden',
         edit: 'Bearbeiten',
+        add: 'Hinzufügen',
+        other: 'Andere...',
         profile: 'Profil',
+        enterTechnology: 'Technologie eingeben',
+        technologies:'Technologie',
         aboutuser: 'Über mich',
         email: 'E-Mail'
       },
@@ -512,7 +527,11 @@ const resources = {
         age: 'Leeftijd',
         name: 'Naam',
         exit: 'Uitloggen',
+        add: 'Toevoegen',
         edit: 'Bewerken',
+        other: 'Andere...',
+        enterTechnology: 'Voer technologie in',
+        technologies:'technologie',
         profile: 'Profiel',
         aboutuser: 'Over mij',
         email: 'E-mail'
@@ -627,7 +646,11 @@ const resources = {
         age: 'Wiek',
         name: 'Imię',
         exit: 'Wyloguj',
+        other: 'Inna...',
+        add: 'Dodaj',
         edit: 'Edytuj',
+        enterTechnology: 'Wprowadź technologię',
+      technologies:'technologie',
         profile: 'Profil',
         aboutuser: 'O mnie',
         email: 'Email'
