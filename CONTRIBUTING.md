@@ -10,7 +10,7 @@ This project is beginner-friendly and open to new contributors.
 3. Pick an issue or suggest your own
 4. Make changes and commit
 5. Open a Pull Request
-
+ 
 ## Good first issues
 
 Look for issues labeled:
