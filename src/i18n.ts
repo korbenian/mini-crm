@@ -32,7 +32,7 @@ const resources = {
   title: 'Dashboard',
   totalUsers: 'Total Users',
   totalCards: 'Total Cards',
-  avgAge: 'Average Age',
+  avgAge: 'Average Age',doneCards: 'Done Cards',
   myCards: 'My Cards'
 }
 ,
@@ -45,6 +45,7 @@ const resources = {
         account: 'Account',
         exit: 'Exit',
         edit: 'Edit',
+        
         profile: 'Profile',
         aboutuser: 'About me'
       },
@@ -154,7 +155,8 @@ const resources = {
   totalUsers: 'Всего пользователей',
   totalCards: 'Всего карточек',
   avgAge: 'Средний возраст',
-  myCards: 'Ваши карточки'
+  myCards: 'Ваши карточки',
+    doneCards: 'Завершённые карточки',
 }
 ,
       dashboard: {
@@ -166,6 +168,7 @@ const resources = {
         account: 'Аккаунт',
         exit: 'Выйти',
         edit: 'Редактировать',
+      
         profile: 'Профиль',
         aboutuser: 'О себе'
       },
@@ -262,7 +265,7 @@ const resources = {
   title: 'Tableau de bord',
   totalUsers: 'Nombre total d’utilisateurs',
   totalCards: 'Nombre total de cartes',
-  avgAge: 'Âge moyen',
+  avgAge: 'Âge moyen',doneCards: 'Cartes terminées',
   myCards: 'Mes cartes'
 }
 ,
@@ -284,6 +287,7 @@ const resources = {
         account: 'Compte',
         exit: 'Quitter',
         edit: 'Modifier',
+        
         profile: 'Profil',
         aboutuser: 'À propos de moi'
       },
@@ -377,7 +381,7 @@ const resources = {
   title: 'Dashboard',
   totalUsers: 'Gesamtanzahl Nutzer',
   totalCards: 'Gesamtanzahl Karten',
-  avgAge: 'Durchschnittsalter',
+  avgAge: 'Durchschnittsalter',doneCards: 'Erledigte Karten',
   myCards: 'Meine Karten'
 },tariff: {
   plans: 'Tarifpläne'
@@ -402,6 +406,7 @@ const resources = {
         account: 'Konto',
         exit: 'Abmelden',
         edit: 'Bearbeiten',
+        
         profile: 'Profil',
         aboutuser: 'Über mich'
       },
@@ -495,7 +500,7 @@ const resources = {
   title: 'Dashboard',
   totalUsers: 'Totaal gebruikers',
   totalCards: 'Totaal kaarten',
-  avgAge: 'Gemiddelde leeftijd',
+  avgAge: 'Gemiddelde leeftijd', doneCards: 'Voltooide kaarten',
   myCards: 'Mijn kaarten'
 }
 ,tariff: {
@@ -520,6 +525,7 @@ const resources = {
         account: 'Account',
         exit: 'Uitloggen',
         edit: 'Bewerken',
+       
         profile: 'Profiel',
         aboutuser: 'Over mij'
       },
@@ -603,7 +609,7 @@ const resources = {
   title: 'Panel',
   totalUsers: 'Łączna liczba użytkowników',
   totalCards: 'Łączna liczba kart',
-  avgAge: 'Średni wiek',
+  avgAge: 'Średni wiek',doneCards: 'Ukończone karty',
   myCards: 'Moje karty'
 },tariff: {
   plans: 'Plany taryf'
@@ -639,6 +645,7 @@ const resources = {
         account: 'Konto',
         exit: 'Wyloguj',
         edit: 'Edytuj',
+       
         profile: 'Profil',
         aboutuser: 'O mnie'
       },

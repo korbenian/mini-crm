@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../firebase'
+import { useUserStore } from '../../store/userStore'
 import { Link } from 'react-router-dom'
 import { onAuthStateChanged, User } from 'firebase/auth'
 import {getDoc,doc} from 'firebase/firestore'
@@ -8,7 +9,7 @@ import TechSelector from '../../components/TechSelector'
 import { useTranslation } from 'react-i18next'
 import Sidebar from '../../components/Sidebar'
 
-type UserProfile = {
+export type UserProfile = {
   name: string
   age: number
   about: string
@@ -35,10 +36,15 @@ const ClientForm: React.FC = () => {
 
     const userRef = doc(db, 'users', user.uid)
     const snap = await getDoc(userRef)
-
     if (snap.exists()) {
-  const data = snap.data()
-  setProfileData(data as UserProfile)
+  const data = snap.data() as UserProfile
+  setProfileData(data)
+const { setUser } = useUserStore.getState();
+setUser({
+  uid:user.uid,
+  email:user.email,
+  name:data.name
+})
 
   if (data.techStack) {
     setTechStack(data.techStack)
