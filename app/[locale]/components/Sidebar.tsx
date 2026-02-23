@@ -55,7 +55,7 @@ const t = useTranslations()
             <span>{t('navigation.articles')}</span>
           </Link>
 
-          <Link href='/TaskPage' className={styles.link}>
+          <Link href='/Tasks' className={styles.link}>
             <ClipboardList size={18} />
             <span>{t('navigation.tasks')}</span>
           </Link>

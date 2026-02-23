@@ -34,7 +34,7 @@ const LanguageSwitcher = () => {
       disabled={isPending} 
       className={styles.select}
       sx={{ minWidth: 120 }}
-      renderValue={(value) => {
+      renderValue={(value:string) => {
         const lang = languages.find((l) => l.code === value)
         return (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
