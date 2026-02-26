@@ -58,6 +58,8 @@
       "add": "Ajouter",
       "edit": "Modifier",
       "technologies": "technologies",
+      "addTech": "Ajouter des technologies",
+  "hideTech": "Supprimer les technologies",
       "profile": "Profil",
       "aboutuser": "À propos de moi",
       "email": "Email"

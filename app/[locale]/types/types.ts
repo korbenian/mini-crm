@@ -1,3 +1,5 @@
+//C:\Users\User\mini-crm\app\[locale]\types\types.ts
+import { create } from 'zustand';
 export type Task = {
   id: string
   title: string
@@ -21,8 +23,18 @@ export  type getArticles = {
   progress: number;
   }
   export type UserProfile = {
+ uid: string;    
+  docId: string;    
+  email: string | null;
+  name: string;
+  age: number;
+  about: string;
+  avatarUrl?: string;
+}
+export type Profile = {
   name: string
   age: number
   about: string
-  docId:string
+  role: 'admin' | 'user',
+
 }

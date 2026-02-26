@@ -1,9 +1,12 @@
+//C:\Users\User\mini-crm\app\[locale]\store\userStore.tsx
 import { create } from 'zustand';
 
 type UserProfile = {
   uid: string;
   email: string | null;
+  age:number
   name: string;
+  about:string | null
   avatarUrl?: string;
 };
 

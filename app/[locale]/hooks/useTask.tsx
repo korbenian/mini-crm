@@ -1,7 +1,7 @@
 // app/[locale]/hooks/useTask.ts
-import { db } from './firebase'
+import { db } from '../firebase'
 import { doc, deleteDoc } from 'firebase/firestore'
-import { Task } from './types/types'
+import { Task } from '../types/types'
 export const useTask = ({
   task,
   onSave,

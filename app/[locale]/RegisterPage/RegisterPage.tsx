@@ -22,7 +22,7 @@ const RegisterPage = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password)
 
-      navigate.push('/dashboard')
+      navigate.push('/Dashboard')
     } catch (err: any) {
   console.error(err)
   setError(err.message)

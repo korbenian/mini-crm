@@ -45,7 +45,7 @@ const t = useTranslations()
         </div>
 
         <nav className={styles.nav}>
-          <Link href='/dashboard' className={styles.link}>
+          <Link href='/Dashboard' className={styles.link}>
             <LayoutDashboard size={18} />
             <span>{t('navigation.dashboard')}</span>
           </Link>

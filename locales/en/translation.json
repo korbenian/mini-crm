@@ -56,6 +56,8 @@
       "technologies": "technologies",
       "edit": "Edit",
       "enterTechnology": "Enter technology",
+      "addTech": "Add Technologies",
+  "hideTech": "Remove Technologies",
       "add": "Add",
       "other": "Other...",
       "profile": "Profile",

@@ -5,8 +5,9 @@ import DashBoardPage from './DashBoardPage'
 import { NextIntlClientProvider } from 'next-intl'
 import { DashboardTypes } from '../types/types'
 
-export default async function DashboardServer({ searchParams }: { searchParams: { uid?: string } }) {
-    const userId = searchParams.uid
+export default async function DashboardServer({ searchParams }: { searchParams: Promise<{ uid?: string }> }) {
+  const userId=(await searchParams).uid
+    
 
     if (!userId) {
         const emptyMetrics: DashboardTypes = { myCards: 0, doneCards: 0, activeCards: 0, progress: 0 };

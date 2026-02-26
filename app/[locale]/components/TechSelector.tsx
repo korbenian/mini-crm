@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { db } from '../../../lib/firebase'
 import { getAuth } from 'firebase/auth'
 import { useTranslations } from 'next-intl'
+import styles from './TechSelector.module.scss'
 interface TechSelectorProps {
   onChange?: (techs: string[]) => void
 }
@@ -95,47 +96,42 @@ export default function TechSelector ({ onChange }: TechSelectorProps) {
   }
 
   return (
-    <div className='flex flex-wrap gap-2'>
-      {POPULAR_TECHS.map(tech => (
-        <button
-          key={tech}
-          onClick={() => toggleTech(tech)}
-          className={`px-3 py-1 rounded-full border cursor-pointer ${
-            selected.includes(tech)
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'border-gray-400 text-gray-700'
-          }`}
-        >
-          {tech}
-        </button>
-      ))}
+  <div className={styles['tech-container']}> {/* ИСПРАВЛЕНО: styles[...] */}
+    {POPULAR_TECHS.map(tech => (
+      <button
+        key={tech}
+        onClick={() => toggleTech(tech)}
+        className={`${styles['tech-button']} ${selected.includes(tech) ? styles.active : ''}`}
+      >
+        {tech}
+      </button>
+    ))}
 
-      {!isAddingCustom && (
-        <button
-          onClick={() => setIsAddingCustom(true)}
-          className=''
-        >
-          + {t('profile.other')}
-        </button>
-      )}
+    {!isAddingCustom && (
+      <button
+        onClick={() => setIsAddingCustom(true)}
+        className={styles['add-trigger-btn']} 
+      >
+        + {t('profile.other')}
+      </button>
+    )}
 
-      {isAddingCustom && (
-        <div className=''>
-          <input
-            type='text'
-            placeholder={t('profile.enterTechnology')}
-            value={customValue}
-            onChange={e => setCustomValue(e.target.value)}
-            className=''
-          />
-          <button
-            onClick={addCustomTech}
-            className=''
-          >
-            {t('profile.add')}
-          </button>
-        </div>
-      )}
-    </div>
-  )
+    {isAddingCustom && (
+      <div className={styles['add-custom-wrapper']}> {/* ИСПРАВЛЕНО: styles[...] */}
+        <input
+          type='text'
+          placeholder={t('profile.enterTechnology')}
+          value={customValue}
+          onChange={e => setCustomValue(e.target.value)}
+        />
+        <button 
+          onClick={addCustomTech} 
+          className={`${styles['tech-button']} ${styles.active}`} // ИСПРАВЛЕНО: оба класса из styles
+        >
+          {t('profile.add')}
+        </button>
+      </div>
+    )}
+  </div>
+)
 }

@@ -6,7 +6,7 @@ import Input from '../components/Input'
 import { doc, updateDoc,addDoc,collection ,deleteDoc,onSnapshot} from 'firebase/firestore'
 import { Task } from '../types/types'
 import { useTranslations } from 'next-intl'
-import {useTask} from '../useTask'
+import {useTask} from '../hooks/useTask'
 type PropTask={
   utils:Task
 }
