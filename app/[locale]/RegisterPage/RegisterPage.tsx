@@ -10,6 +10,7 @@ import Button from '../components/Button'
 import { useTranslations } from 'next-intl'
 import ChangeTheme from '../components/ThemeButton'
 import LanguageSwitcher from '../components/ChangeLanguage'
+import { supabase } from '@/utils/supabase'
 const RegisterPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -20,8 +21,15 @@ const RegisterPage = () => {
     e.preventDefault()
     setError('')
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
-
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    console.error("Ключи Supabase не найдены! Проверь .env.local");
+    return;
+  }
+      const {data,error}=await supabase.auth.signUp({
+        email,
+        password
+      })
+if (error) throw error
       navigate.push('/Dashboard')
     } catch (err: any) {
   console.error(err)

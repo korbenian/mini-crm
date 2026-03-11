@@ -1,137 +1,81 @@
-'use client';
-import {
-  doc,
-  setDoc,
-  arrayUnion,
-  getDoc
-} from 'firebase/firestore'
-import { useEffect, useState } from 'react'
-import { db } from '../../../lib/firebase'
-import { getAuth } from 'firebase/auth'
+'use client'
+import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import styles from './TechSelector.module.scss'
+
 interface TechSelectorProps {
-  onChange?: (techs: string[]) => void
+  selected: string[] // Прилетает из ClientForm (из базы через useEffect)
+  onChange: (techs: string[]) => void // Функция, которая СРАЗУ пушит в базу из ClientForm
 }
 
-const POPULAR_TECHS = [
-  'JavaScript',
-  'TypeScript',
-  'Python',
-  'Java',
-  'C#',
-  'Go',
-  'Rust',
-  'C++',
-  'PHP',
-  'Ruby'
-]
+const POPULAR_TECHS = ['JavaScript', 'TypeScript', 'Python', 'Java', 'C#', 'Go', 'Rust', 'C++', 'PHP', 'Ruby']
 
-export default function TechSelector ({ onChange }: TechSelectorProps) {
-  const [selected, setSelected] = useState<string[]>([])
+export default function TechSelector({ selected = [], onChange }: TechSelectorProps) {
   const [isAddingCustom, setIsAddingCustom] = useState(false)
   const [customValue, setCustomValue] = useState('')
-  const  t  = useTranslations()
-  const auth = getAuth()
-  const user = auth.currentUser
+  const t = useTranslations()
 
-  // 🔹 загрузка techStack из users/{uid}
-  useEffect(() => {
-    const loadTechStack = async () => {
-      if (!user) return
-
-      const userRef = doc(db, 'users', user.uid)
-      const snap = await getDoc(userRef)
-
-      if (snap.exists()) {
-        const data = snap.data()
-        if (data.techStack) {
-          setSelected(data.techStack)
-        }
-      }
-    }
-
-    loadTechStack()
-  }, [user])
-
-  const toggleTech = async (tech: string) => {
-    if (!user) return
-
+  // Логика переключения (без базы!)
+  const handleToggle = (tech: string) => {
     const newList = selected.includes(tech)
       ? selected.filter(t => t !== tech)
       : [...selected, tech]
-
-    setSelected(newList)
-    onChange?.(newList)
-
-    const userRef = doc(db, 'users', user.uid)
-
-    await setDoc(
-      userRef,
-      { techStack: newList },
-      { merge: true }
-    )
+    
+    onChange(newList) // Сообщаем родителю: "Записывай в базу!"
   }
 
-  
-  const addCustomTech = async () => {
+  const handleAddCustom = () => {
     const tech = customValue.trim()
-    if (!tech || !user) return
-
-    if (!selected.includes(tech)) {
-      setSelected(prev => [...prev, tech])
-      onChange?.([...selected, tech])
-
-      const userRef = doc(db, 'users', user.uid)
-
-      await setDoc(
-        userRef,
-        { techStack: arrayUnion(tech) },
-        { merge: true }
-      )
+    if (tech && !selected.includes(tech)) {
+      onChange([...selected, tech])
     }
-
     setCustomValue('')
     setIsAddingCustom(false)
   }
 
   return (
-  <div className={styles['tech-container']}> {/* ИСПРАВЛЕНО: styles[...] */}
-    {POPULAR_TECHS.map(tech => (
-      <button
-        key={tech}
-        onClick={() => toggleTech(tech)}
-        className={`${styles['tech-button']} ${selected.includes(tech) ? styles.active : ''}`}
-      >
-        {tech}
-      </button>
-    ))}
-
-    {!isAddingCustom && (
-      <button
-        onClick={() => setIsAddingCustom(true)}
-        className={styles['add-trigger-btn']} 
-      >
-        + {t('profile.other')}
-      </button>
-    )}
-
-    {isAddingCustom && (
-      <div className={styles['add-custom-wrapper']}> {/* ИСПРАВЛЕНО: styles[...] */}
-        <input
-          type='text'
-          placeholder={t('profile.enterTechnology')}
-          value={customValue}
-          onChange={e => setCustomValue(e.target.value)}
-        />
-        <button 
-          onClick={addCustomTech} 
-          className={`${styles['tech-button']} ${styles.active}`} // ИСПРАВЛЕНО: оба класса из styles
+    <div className={styles['tech-container']}>
+      {/* Рендерим популярные */}
+      {POPULAR_TECHS.map(tech => (
+        <button
+          key={tech}
+          type="button"
+          onClick={() => handleToggle(tech)}
+          className={`${styles['tech-button']} ${selected.includes(tech) ? styles.active : ''}`}
         >
-          {t('profile.add')}
+          {tech}
         </button>
-      </div>
-    )}
-  </div>
-)
+      ))}
+
+      {/* Рендерим те, что юзер добавил сам (кастомные) */}
+      {selected.filter(t => !POPULAR_TECHS.includes(t)).map(tech => (
+        <button
+          key={tech}
+          type="button"
+          onClick={() => handleToggle(tech)}
+          className={`${styles['tech-button']} ${styles.active}`}
+        >
+          {tech} ✕
+        </button>
+      ))}
+
+      {!isAddingCustom ? (
+        <button type="button" onClick={() => setIsAddingCustom(true)} className={styles['add-trigger-btn']}>
+          + {t('profile.other')}
+        </button>
+      ) : (
+        <div className={styles['add-custom-wrapper']}>
+          <input
+            type='text'
+            value={customValue}
+            onChange={e => setCustomValue(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleAddCustom()}
+          />
+          <button type="button" onClick={handleAddCustom} className={`${styles['tech-button']} ${styles.active}`}>
+            {t('profile.add')}
+          </button>
+        </div>
+      )}
+    </div>
+  )
 }

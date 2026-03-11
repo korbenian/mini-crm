@@ -1,29 +1,25 @@
 'use client'
 import { useState } from 'react'
-import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
 import { motion, AnimatePresence } from 'framer-motion'
-import { db } from '../firebase'
 import { useTranslations } from 'next-intl'
 import TaskEditing from './TaskEditing'
 import { Task } from '../types/types'
 import styles from './tasks.module.scss'
-import useTasks from '../hooks/useTasks'
+import useTasks from '../hooks/useTasks' // Твой новый хук
 
 export default function TaskView({ task }: { task: Task }) {
   const [isEditing, setIsEditing] = useState(false)
-  const {handleSave,removeTask}=useTasks()
-const  t  = useTranslations()
+  const { handleSave, removeTask, UpdateStatus } = useTasks()
+  const t = useTranslations()
 
 
   return (
-    <div className={styles.taskCard}>
+ <div className={styles.taskCard}>
       <div className={styles.taskHeader}>
-        <h2>{task.title || t('tasks.noTitle')}</h2>
+        <h2>{task.name || t('tasks.noTitle')}</h2> 
         <select
           value={task.status}
-          onChange={e =>
-            updateDoc(doc(db, 'cards', task.id), { status: e.target.value })
-          }
+          onChange={e => UpdateStatus(task.id, e.target.value)} 
         >
           <option value="To Do">{t('tasks.status.todo')}</option>
           <option value="In Progress">{t('tasks.status.inProgress')}</option>

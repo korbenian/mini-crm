@@ -1,10 +1,6 @@
 'use client'
 //C:\Users\User\mini-crm\app\[locale]\CreateProfile\CreateProfile.tsx
-import { useState, useEffect } from 'react'
-import { auth, db } from '../firebase'
-import { collection, query, where, getDocs } from 'firebase/firestore'
-import { onAuthStateChanged ,User} from 'firebase/auth'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import Input from '../components/Input'
 import styles from  './CreateProfile.module.scss'
 import { useTranslations } from 'next-intl'
@@ -13,7 +9,6 @@ import { Profile } from '../types/types'
 import {useProfile} from '../hooks/useProfile'
 
 const CreateProfile = () => {
-  const [firebaseUser, setFirebaseUser] = useState<User | null>(null)
   const  t  = useTranslations()
   const [profileData, setProfileData] = useState<Profile>({
     name: '',
@@ -21,34 +16,8 @@ const CreateProfile = () => {
     about: '',
     role: 'user',
   })
-  const navigate = useRouter()
-const {handleSaveProfile,loading:isSaving,error:isError}=useProfile(firebaseUser?.uid)
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async user => {
-      if (user) {
-        setFirebaseUser(user)
-
-        const q = query(collection(db, 'users'), where('uid', '==', user.uid))
-        const querySnapshot = await getDocs(q)
-
-        if (!querySnapshot.empty) {
-          navigate.push('/ClientForm')
-        }
-      } else {
-        setFirebaseUser(null)
-      }
-      
-    })
-
-    return () => unsubscribe()
-  }, [navigate])
-
-
-
-
-
-
-  if (!firebaseUser) return <p>Пожалуйста, войдите в систему</p>
+const {handleSaveProfile,loading:isSaving,error:isError}=useProfile()
+  
 
   return (
     <div className={styles.wrapper}>

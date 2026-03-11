@@ -7,33 +7,20 @@ import {
   ChartNoAxesCombined,
   BotMessageSquare 
 } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import  Link  from 'next/link'
 import styles from './Sidebar.module.scss'
 import ChangeTheme from './ThemeButton'
 import ChangeLanguage from './ChangeLanguage'
 import { useTranslations } from 'next-intl'
-import { auth, db } from '../../../lib/firebase'
-import {  doc, getDoc } from 'firebase/firestore'
-
-
+import useAuth from '../hooks/useAuth';
+import { useRenderProfile } from '../hooks/useProfile';
 
 export default function Sidebar () {
 const t = useTranslations()
-      const [role, setRole] = useState<string | null>(null)
-  useEffect(() => {
-    const fetchRole = async () => {
-      const currentUser = auth.currentUser
-      if (!currentUser) return
+const { profileData,loading:profileLoading} = useRenderProfile()
 
-      const snap = await getDoc(doc(db, 'users', currentUser.uid))
-      if (snap.exists()) {
-        setRole(snap.data().role)
-      }
-    }
+const isAdmin=profileData?.role==='admin'
 
-    fetchRole()
-  }, [])
 
   return (
 
@@ -70,20 +57,28 @@ const t = useTranslations()
         
                 </div>
 <div className={styles.adminPanel}>
-        {role === 'admin' && (
-        <>
-          <Link href="/AllUsers">Users</Link>
-          <Link href="/AllCards">All Cards</Link>
-
-          <Link href="/Analitycs">Analytics</Link>
-        </>
+        {!profileLoading && isAdmin&& (
+        <div className={styles.adminPanel}>
+          <hr className={styles.separator} />
+          <p className={styles.adminTitle}>Admin Area</p>
+          <Link href="/AllUsers" className={styles.link}>Users</Link>
+          <Link href="/AllCards" className={styles.link}>All Cards</Link>
+          <Link href="/Analitycs" className={styles.link}>Analytics</Link>
+        </div>
       )}</div>
 <div className={styles.wrapaccext
 }>
         <div className={styles.accext}>   <ChangeTheme />
-                <Link className={styles.buttons} href='/CreateProfile'>
-                  {t('dashboard.account')}
-                </Link>
+              {profileData ? (
+        <Link className={styles.buttons} href='/ClientForm'>
+          {t('profile.profile')}
+        </Link>
+      ) : (
+        <Link className={styles.buttons} href='/CreateProfile'>
+          {t('dashboard.account')}
+        </Link>
+      )}
+                 
                 <Link className={styles.exitx} href='/'>
                   {t('dashboard.exit')}
                 </Link></div></div>

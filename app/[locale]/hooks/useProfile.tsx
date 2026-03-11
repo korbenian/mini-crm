@@ -1,43 +1,37 @@
-//C:\Users\User\mini-crm\app\[locale]\hooks\useProfile.tsx
 'use client'
-import {useEffect } from 'react'
-import { getDoc} from 'firebase/firestore'
-import { useUserStore } from '../store/userStore'
-import { useState } from 'react'
-import useAuth from '../hooks/useAuth'
-import { db } from '../firebase'
-import { doc, setDoc, serverTimestamp, query, collection, where, getDocs } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Profile, UserProfile } from '../types/types'
+import { supabase } from '@/utils/supabase'
 
-export  function useProfile(uid: string | undefined) {
+export  function useProfile() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useRouter()
 
   const handleSaveProfile = async (profileData: Profile) => {
-    if (!uid) {
-      setError('No User ID')
-      return
-    }
+  const{data:{user}}=await supabase.auth.getUser()
+      if (!user) return
     
     setLoading(true)
     try {
-      const q = query(collection(db, 'users'), where('uid', '==', uid))
-      const querySnapshot = await getDocs(q)
+ const { error: supabaseError } = await supabase
+  .from('profiles')
+  .upsert({
+    id: user.id, 
+    name: profileData.name,
+    age: profileData.age,
+    about: profileData.about,
+    updated_at: new Date().toISOString()
+  })
 
-      if (!querySnapshot.empty) {
-        navigate.push('/ClientForm')
-        return
-      }
+if (supabaseError) {
+  setError(supabaseError.message)
+  console.error("Ошибка базы:", supabaseError)
+  return 
+}
 
-      await setDoc(doc(db, "users", uid), {
-        uid,
-        ...profileData,
-        createdAt: serverTimestamp()
-      })
-
-      navigate.push('/ClientForm')
+navigate.push('/ClientForm')
     } catch (err) {
       setError('Ошибка при создании профиля')
       console.error(err)
@@ -49,28 +43,29 @@ export  function useProfile(uid: string | undefined) {
   return { handleSaveProfile, loading, error }
 }
 
-export function useRenderProfile(uid: string | undefined) {
-  const [profileData, setProfileData] = useState<any>(null)
-  const setUser = useUserStore((state) => state.setUser)
- const { user, loading: authLoading } = useAuth()
-  useEffect(() => {
-if (!uid || !user) return;
-    const fetchProfile = async () => {
-      const snap = await getDoc(doc(db, 'users', uid))
+export function useRenderProfile() {
+  const [profileData, setProfileData] = useState<UserProfile | null>(null)
+  const [loading, setLoading] = useState(true)
 
-      
-      if (snap.exists()) {
-        const data = snap.data()
-        const completedData={
-          ...data,
-          docId:snap.id
-        } as UserProfile
-        setProfileData(completedData)
-       setUser(completedData);
-      }
+  const fetchProfile = async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { data, error } = await supabase
+      .from('profiles') 
+      .select('*')
+      .eq('id', user.id)
+      .single() 
+
+    if (error && error.code !== 'PGRST116') {
+       console.log(error)
+    } else {
+       setProfileData(data)
     }
-    fetchProfile()
-  }, [uid, setUser])
+    setLoading(false)
+  }
 
-  return { profileData }
+  useEffect(() => { fetchProfile() }, []) 
+
+  return { profileData, loading }
 }

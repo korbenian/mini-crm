@@ -88,9 +88,9 @@ border-color: aqua;
   margin-top: auto; 
 }
 .adminPanel{
-
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 5%;
 }
 .WrapperChangeLanguage{
@@ -100,7 +100,7 @@ border-color: aqua;
   justify-content: center;
 }
 .wrapaccext{
-min-height: 50%;
+min-height: 45%;
 max-height: 42%;
     display: flex;
     align-items: center;

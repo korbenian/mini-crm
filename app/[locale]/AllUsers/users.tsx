@@ -1,31 +1,17 @@
 'use client'
 //C:\Users\User\mini-crm\app\[locale]\AllUsers\users.tsx
 import React, { useEffect, useState } from 'react'
-import { db } from '../firebase'
-import { collection, onSnapshot} from 'firebase/firestore'
 import styles from './users.module.scss'
 import { useTranslations } from 'next-intl'
 import Sidebar from '../components/Sidebar'
-import { UserProfile } from '../types/types'
+import { useAllUsers } from '../AdminHooks/useAllUsers'
 const AllUsers: React.FC = () => {
-const [users, setUsers] = useState<UserProfile[]>([])
-  const  t  = useTranslations()
-  useEffect(() => {
-    
-  const usersRef = collection(db, 'users')
-  const unsubscribe = onSnapshot(usersRef, snapshot => {
-    const usersList: UserProfile[] = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...(doc.data() as Omit<UserProfile, 'id'>)
-    }))
 
-    setUsers(usersList)
-  },(error) => { console.error("Firebase error:", error); })
+const  t  = useTranslations()
+const { users, loading, error } = useAllUsers()
 
-
-  return () => unsubscribe()
-
-}, [])
+  if (loading) return <p>Загрузка списка юзеров...</p>
+  if (error) return <p style={{ color: 'red' }}>Ошибка: {error}</p>
 return (
   <div className={styles.wrapper}>
     <Sidebar />
@@ -44,12 +30,12 @@ return (
 
         <tbody>
       {users.map(user => (
-        <tr key={user.uid} className={styles.dataUser}>
+        <tr key={user.id} className={styles.dataUser}>
 
           <td> {user.name}</td>
           <td>{user.age  ||'-'}</td> 
             <td> {user.about}</td>
-          <td>{user.techStack?.join(', ') || '-'}</td>
+          <td>{user.tech_stack?.join(', ') || '-'}</td>
           <td> {user.role}</td>
         </tr>
       ))}</tbody>

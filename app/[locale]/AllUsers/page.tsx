@@ -5,16 +5,12 @@ import { useRenderProfile } from '../hooks/useProfile'
 import useAuth from "../hooks/useAuth";
 import { useTranslations } from 'next-intl'
 export default function AllUsersPage(){
-const {user,loading:authLoading}=useAuth()
- const { profileData }=useRenderProfile(user?.uid)
- const  t  = useTranslations()
-if(authLoading || !profileData){
-return <div>{t('common.loading')}</div>
-}
+    const {  user , loading:authLoading,userId} = useAuth()
+ const { profileData }=useRenderProfile()
 
-if(profileData.role !=='admin'){
- return <div>{t('errors.notAdmin')}</div>
-}
+ const  t  = useTranslations()
+
+
 
   return  <AllUsers/>
 }

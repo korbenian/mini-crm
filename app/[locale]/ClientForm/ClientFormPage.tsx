@@ -1,44 +1,53 @@
 'use client'
 //C:\Users\User\mini-crm\app\[locale]\ClientForm\ClientFormPage.tsx
-import { useState, useEffect } from 'react'
-import { useUserStore } from '../store/userStore'
-import { auth, db } from '../firebase'
-import { onAuthStateChanged ,User} from 'firebase/auth'
-import {getDoc,doc} from 'firebase/firestore'
+import { useState } from 'react'
 import styles from './ClientFormPage.module.scss'
 import { useTranslations } from 'next-intl'
 import TechSelector from '../components/TechSelector'
 import Sidebar from '../components/Sidebar'
 import  Link  from 'next/link'
 import useAuth from '../hooks/useAuth'
-
 import {useRenderProfile} from '../hooks/useProfile'
-
-export type UsProfile = {
-  name: string
-  age: number
-  about: string
-  avatarUrl?: string
-  techStack?: string[]
-  email:string
-}
-
-
+import { supabase } from '@/utils/supabase'
+import { useEffect } from 'react'
 const ClientForm: React.FC = () => {
     const [techStack, setTechStack] = useState<string[]>([])
-     const [showTech, setShowTech] = useState(false)
-     const { user, loading: authLoading } = useAuth()
-  const { profileData }=useRenderProfile(user?.uid)
-  const  t  = useTranslations()
- useEffect(() => {
-  if (profileData?.techStack) {
-    setTechStack(profileData.techStack)
-  }
-}, [profileData])
-if (authLoading) return <p>Проверка доступа...</p>
-  if (!user) return <p>Вы не вошли в систему</p>
-  if (!profileData) return <p>{t('loading.loadingdata')}</p>
+     const [showTech, setShowTech] = useState(false) 
+     const [localTechs, setLocalTechs] = useState<string[]>([]);
+     const  t  = useTranslations()
+const { user, email, loading: authLoading } = useAuth()
+  const { profileData, loading: profileLoading } = useRenderProfile()
 
+useEffect(() => {
+    if (profileData?.tech_stack) {
+      setLocalTechs(profileData.tech_stack);
+    }
+  }, [profileData]);
+
+  const updateTechStack = async (newList: string[]) => {
+    setLocalTechs(newList); 
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+
+    const { error } = await supabase
+      .from('profiles')
+      .upsert({ 
+        id: user.id, 
+        tech_stack: newList,
+        updated_at: new Date().toISOString() 
+      });
+
+    if (error) console.error("Ошибка обновления стека:", error.message);
+  };
+
+
+
+
+  if (authLoading || profileLoading) return <p>Загрузка...</p>
+  if (!user) return <p>Доступ запрещен. Войдите в систему.</p>
+ 
   return (
     <div className={styles.wrapper}>
      <div className={styles.Sidebar}>
@@ -49,21 +58,24 @@ if (authLoading) return <p>Проверка доступа...</p>
            <div className={styles.dataUser}>
   <h1>{t('profile.profile')}</h1>
   <p>
-    <strong>{t('profile.email')}:</strong> {user.email}
+    <strong>{t('profile.email')}:</strong> {email}
   </p>
   <p>
-    <strong>{t('profile.name')}:</strong> {profileData.name}
+    <strong>{t('profile.name')}:</strong> {profileData?.name}
   </p>
   <p>
-    <strong>{t('profile.age')}:</strong> {profileData.age}
+    <strong>{t('profile.age')}:</strong> {profileData?.age}
   </p>
   <p>
-    <strong>{t('profile.aboutuser')}:</strong> {profileData.about}
+    <strong>{t('profile.aboutuser')}:</strong> {profileData?.about}
   </p>    <span className={styles.techText}>
-    {t('profile.technologies')} : {techStack.join(', ')}
+    {t('profile.technologies')} : {profileData?.tech_stack.join(', ')}
   </span>
   <div className={styles.techList + ' ' + (!showTech ? styles.hidden : '')}>
-  <TechSelector onChange={list => setTechStack(list)} />
+  <TechSelector 
+        selected={localTechs} 
+        onChange={updateTechStack} 
+      />
 </div>
 <button
   className={styles.techToggleButton}

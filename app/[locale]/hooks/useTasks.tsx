@@ -1,13 +1,37 @@
-import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
-import { db } from '../firebase'
+
+import { supabase } from '@/utils/supabase'
 export default function useTasks(){
      const removeTask = async (id: string) => {
-        await deleteDoc(doc(db, 'cards', id))
+       const {error}=await supabase
+       .from('leads')
+       .delete()
+       .eq('id',id)
+
+       if(error) throw error
+       window.location.reload()
       }
     
-      const handleSave = async (id: string, title: string, deadline: string) => {
-        await updateDoc(doc(db, 'cards', id), { title, deadline, isEditing: false })
         
+    
+      const handleSave = async (id: string, title: string, deadline: string) => {
+const {error}= await supabase
+.from('leads')
+.update({name:title,deadline:deadline})
+.eq('id',id)
+        if(error)throw error
       }
-      return {removeTask,handleSave}
+
+ const UpdateStatus  = async (id: string,newStatus:string) => {
+      const {error}=await supabase
+      .from('leads')
+      .update({status:newStatus})
+.eq('id',id)
+
+if(error) throw error
+      }
+
+
+
+      return {removeTask,handleSave,UpdateStatus}
 }
+

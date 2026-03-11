@@ -1,40 +1,48 @@
  'use client'
  //C:\Users\User\mini-crm\app\[locale]\Analitycs\page.tsx
- import { collection, getDocs, query } from 'firebase/firestore'
- import {db } from '../firebase'
  import { useState } from 'react'
 import  Analitycs  from './Analytics'
 import { useTranslations } from 'next-intl'
+import { supabase } from '@/utils/supabase'
 import useAuth from '../hooks/useAuth'
 import { useRenderProfile } from '../hooks/useProfile'
 export default function AnalitycsPage() {
   const [metrics, setMetrics] = useState({ userCount: 0, totalCards: 0, avgAge: 0 });
   const  t  = useTranslations()
  const { user, loading: authLoading } = useAuth()
- const { profileData }=useRenderProfile(user?.uid)
+ const { profileData }=useRenderProfile()
 
   const LoadAdminmetrics = async () => {
-    try {
-      
-      const usersSnapQuery =query(collection(db, 'users'));
-      const cardsSnapQuery =query(collection(db, 'cards'));
-      
-      const [usersSnap,cardsSnap]= await Promise.all([
-getDocs(usersSnapQuery),
-getDocs(cardsSnapQuery)])
+  try {
+    const { count: userCount, error: userError } = await supabase
+      .from('profiles')
+      .select('*', { count: 'exact', head: true });
 
-      const ages = usersSnap.docs.map(doc => (doc.data() as any).age || 0);
-      const avg = ages.length ? Math.round(ages.reduce((a, b) => a + b, 0) / ages.length) : 0;
+    
+    const { count: totalCards, error: cardsError } = await supabase
+      .from('leads')
+      .select('*', { count: 'exact', head: true });
 
+    const { data: ageData, error: ageError } = await supabase
+      .from('profiles')
+      .select('age');
+
+    const ages = ageData?.map(p => p.age).filter(Boolean) || [];
+    const avg = ages.length 
+      ? Math.round(ages.reduce((a, b) => a + b, 0) / ages.length) 
+      : 0;
+
+    if (!userError && !cardsError) {
       setMetrics({
-        userCount: usersSnap.size,
-        totalCards: cardsSnap.size,
+        userCount: userCount || 0,
+        totalCards: totalCards || 0,
         avgAge: avg
       });
-    } catch (err) {
-      console.error('Firestore error:', err);
     }
-  };
+  } catch (err) {
+    console.error('Supabase Analytics Error:', err);
+  }
+};
 
 if(authLoading || !profileData){
 return <div>{t('common.loading')}</div>

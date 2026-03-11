@@ -1,53 +1,80 @@
 'use client'
+//C:\Users\User\mini-crm\app\[locale]\Tasks\addTasks.tsx
 import { useEffect, useState } from 'react'
-import { collection, addDoc, onSnapshot } from 'firebase/firestore'
-import { db,auth } from '../firebase'
 import TaskView from './TaskView'
 import { useTranslations } from 'next-intl'
 import { Task } from '../types/types'
 import styles from './tasks.module.scss' 
 import Sidebar from '../components/Sidebar'
+import { supabase } from '@/utils/supabase'
 
 export default function AddTask() {
   const [tasks, setTasks] = useState<Task[]>([])
   const  t  = useTranslations()
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('All')
-const user = auth.currentUser
- useEffect(() => {
+ const fetchTasks = async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { data, error } = await supabase
+      .from('leads')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error("Ошибка загрузки:", error)
+    } else {
+      setTasks(data as unknown as Task[]) // ВОТ ЭТОГО НЕ ХВАТАЛО!
+    }
+  }
+  useEffect(()=>{
+  fetchTasks()},[])
+  
+const handleNewTask = async () => {
+  const { data: { user } } = await supabase.auth.getUser()
   if (!user) return
 
-  const unsub = onSnapshot(
-    collection(db, 'cards'),
-    snap => {
-      const data = snap.docs
-        .map(d => ({ id: d.id, ...d.data() } as Task))
-        .filter(task => task.uid === user.uid) 
-      setTasks(data)
-    }
-  )
+  const tempId = crypto.randomUUID() 
+const newTaskPlaceholder: Task = {
+    id: tempId,
+    name: '',
+    status: 'To Do',
+    user_id: user.id,
+    description: '',
+    deadline: '', 
+    isDone: false,   
+    created_at: new Date().toISOString()
+  }
 
-  return unsub
-}, [user])
+
+  setTasks(prev => [newTaskPlaceholder, ...prev])
+
+
+  const { data, error } = await supabase
+    .from('leads')
+    .insert([{ name: '', status: 'To Do', user_id: user.id, description: '' }])
+    .select()
+    .single()
+
+  if (error) {
+    console.error("Ошибка при сохранении:", error)
+ 
+    setTasks(prev => prev.filter(t => t.id !== tempId))
+    alert("Ошибка связи с сервером. Попробуй еще раз.")
+  } else {
+    setTasks(prev => prev.map(t => t.id === tempId ? data : t))
+  }
+}
 
   const filteredTasks = tasks.filter(task => {
-    const matchesTitle = (task.title || '').toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesTitle = (task.name || '').toLowerCase().includes(searchQuery.toLowerCase())
     const matchesStatus = statusFilter === 'All' || task.status === statusFilter
     return matchesTitle && matchesStatus
   })
 
-const handleNewTask = async () => {
-  if (!user) return
-  await addDoc(collection(db, 'cards'), {
-    title: '',
-    deadline: '',
-    status: 'To Do',
-    isDone: false,
-    createdAt: new Date(),
-    isEditing: true,
-    uid: user.uid 
-  })
-}
+
 
   return (
   <div className={styles.addTaskPage}>

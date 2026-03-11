@@ -1,14 +1,19 @@
 //C:\Users\User\mini-crm\app\[locale]\types\types.ts
+
 import { create } from 'zustand';
 export type Task = {
   id: string
-  title: string
-  deadline: string
-  isDone: boolean
+  name: string
   status: string
-  isEditing: boolean
-  userName:string
-  uid:string
+  user_id: string
+  description: string
+  profiles?: {
+    name: string;
+  };
+  created_at: string
+  deadline: string   
+  isDone: boolean     
+  isEditing?: boolean
 }
 export  type getArticles = {
     id:number,
@@ -29,21 +34,18 @@ export type Analitycs={
     totalCards:number
   }
 
-  export type UserProfile = {
- uid: string;    
-  docId: string;    
-  email: string | null;
+export type UserProfile = {
+  id: string;  
   name: string;
   age: number;
   about: string;
-  avatarUrl?: string;
-  role:'user'|'admin'
-  techStack:string[]
+  role: 'user' | 'admin';
+  tech_stack: string[];
+  updated_at?: string;
 }
 export type Profile = {
   name: string
   age: number
   about: string
   role: 'admin' | 'user',
-
 }

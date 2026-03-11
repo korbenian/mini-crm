@@ -10,6 +10,7 @@ import Button from '../components/Button'
 import {auth}  from '../firebase'
 import ChangeLanguage from '../components/ChangeLanguage'
 import ChangeTheme from '../components/ThemeButton'
+import { supabase } from '@/utils/supabase'
 
 type LoginPage={
   email:string
@@ -27,10 +28,14 @@ const LoginPage = () => {
     e.preventDefault()
     setError('')
     try {
-      await signInWithEmailAndPassword(auth, email, password)
+      const {data,error}=await supabase.auth.signInWithPassword({
+        email,
+        password
+      })
+      if (error) throw error
       navigate.push('/Dashboard')
     } catch (err: any) {
-      setError(t('login.error') || 'Ошибка входа')
+      setError(err.message || t('login.error'))
     }
   }
 

@@ -1,50 +1,20 @@
 'use client'
 //C:\Users\User\mini-crm\app\[locale]\AllCards\AllCards.tsx
-import { useEffect, useState } from 'react'
-import { collection, onSnapshot, getDoc } from 'firebase/firestore'
-import { db} from '../firebase'
-import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Task } from '../types/types' 
 import useTasks from '../hooks/useTasks'
 import TaskEditing from '../Tasks/TaskEditing'
  import styles from './AllCards.module.scss'
 import Sidebar from '../components/Sidebar'
+import { useAllCards } from '../AdminHooks/useAllCards'
  const AllCards = () => {
-  const [tasks, setTasks] = useState<Task[]>([])
   const [editingId, setEditingId] = useState<string | null>(null)
   const  t  = useTranslations()
  const {handleSave,removeTask}=useTasks()
-
-useEffect(() => {
-  const unsub = onSnapshot(collection(db, 'cards'), async snap => {
-    const tasks = await Promise.all(
-      snap.docs.map(async d => {
-        const task = { id: d.id, ...d.data() } as Task
-
-        if (task.uid) {
-          const userSnap = await getDoc(doc(db, 'users', task.uid))
-          return {
-            ...task,
-            userName: userSnap.exists()
-              ? userSnap.data().name
-              : 'Unknown'
-          }
-        }
-
-        return task
-      })
-    )
-
-    setTasks(tasks)
-  })
-
-  return unsub
-}, [])
-
-
-
+const{ cards,loading,error }=useAllCards()
+if (loading) return <p>Загрузка списка юзеров...</p>
+  if (error) return <p style={{ color: 'red' }}>Ошибка: {error}</p>
  return (
   <div className={styles.container}>
     <Sidebar />
@@ -59,12 +29,12 @@ useEffect(() => {
         </tr>
       </thead>
      <tbody className={styles.tableBody}>
-  {tasks.map((task) => [
+  {cards.map((task) => [
     <tr key={`${task.id}-row`} className={styles.taskRow}>
-      <td>{task.title || t('tasks.noTitle')}</td>
+      <td>{task.name || t('tasks.noTitle')}</td>
       <td>{t(`tasks.status.${task.status.toLowerCase().replace(/\s/g, '')}`)}</td>
       <td>{task.deadline || '—'}</td>
-      <td className={styles.userCell}>👤 {task.userName || '—'}</td>
+      <td className={styles.userCell}>👤 {task.profiles?.name || '—'}</td>
       <td className={styles.taskActions}>
         <button onClick={() => setEditingId(editingId === task.id ? null : task.id)} className={styles.editBtn}>
           {editingId === task.id ? t('tasks.close') : t('tasks.fill')}
