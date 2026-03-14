@@ -10,13 +10,13 @@ const AllUsers: React.FC = () => {
 const  t  = useTranslations()
 const { users, loading, error } = useAllUsers()
 
-  if (loading) return <p>Загрузка списка юзеров...</p>
-  if (error) return <p style={{ color: 'red' }}>Ошибка: {error}</p>
+  if (loading) return <p>{t('errors.loading_users')}</p>
+  if (error) return <p style={{ color: 'red' }}>{error}</p>
 return (
   <div className={styles.wrapper}>
     <Sidebar />
    
-       <p className={styles.usersTitle}>All Users</p>
+       <p className={styles.usersTitle}>{t('profile.all_users')}</p>
     <table className={styles.main}> 
       <thead>
         <tr>

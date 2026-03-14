@@ -2,6 +2,7 @@
 //C:\Users\User\mini-crm\src\components\useChatLogic.tsx
 import { useState } from 'react'
 import axios from 'axios'
+import { useTranslations } from 'next-intl'
 
 export interface ChatMessage {
   role: 'user' | 'assistant'
@@ -13,7 +14,7 @@ export function useChatLogic () {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
+const t=useTranslations()
   const handleSend = async () => {
   if (!input.trim() || loading) return
 
@@ -40,10 +41,10 @@ export function useChatLogic () {
 
     setMessages(prev => [...prev, assistantMessage])
   } catch (e) {
-    setError('Ошибка при получении ответа 😔')
+    setError(t('response_fetch_error'))
     setMessages(prev => [
       ...prev,
-      { role: 'assistant', content: 'Что-то пошло не так…' }
+      { role: 'assistant', content: t('response_fetch_error')}
     ])
   } finally {
     setLoading(false)

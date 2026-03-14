@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/utils/supabase'
 import { Task } from '../types/types'
+import { useTranslations } from 'next-intl'
 
 export function useAllCards() {
   const [cards, setCards] = useState<Task[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-
+const t =useTranslations()
   const fetchCards = async () => {
     setLoading(true)
     
@@ -20,7 +21,7 @@ export function useAllCards() {
 
     if (supabaseError) {
       setError(supabaseError.message)
-      console.error("Ошибка при получении юзеров:", supabaseError)
+      console.error(t('errors.fetch_cards_failed'), supabaseError)
     } else {
       setCards(data || [])
     }

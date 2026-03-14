@@ -1,0 +1,61 @@
+.card {
+  background: #202022;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: grab;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: #444;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    
+    .date {
+      font-size: 11px;
+      color: #777;
+      text-transform: uppercase;
+    }
+
+    .deleteBtn {
+      background: none;
+      border: none;
+      color: #555;
+      cursor: pointer;
+      font-size: 12px;
+      &:hover { color: #ff4d4f; }
+    }
+  }
+
+  .title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #eee;
+    margin: 0 0 12px 0;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .amount {
+      font-size: 13px;
+      font-weight: 600;
+      color: #3b82f6; // Приятный синий цвет для денег
+    }
+
+    .avatar {
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  }
+}

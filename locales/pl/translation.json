@@ -21,11 +21,19 @@
       "link": "Kliknij tutaj"
     },
     "navigation": {
-      "dashboard": "Panel",
-      "articles": "Artykuły",
-      "tasks": "Zadania",
-      "chat": "Czat z AI"
-    },
+  "dashboard": "Dashboard",
+  "deals": "Transakcje",
+  "articles": "Artykuły",
+  "tasks": "Zadania",
+  "chat": "Czat AI",
+  "admin_title": "Panel Admina",
+  "users": "Użytkownicy",
+  "cards": "Wszystkie karty",
+  "analytics": "Analityka",
+  "profile": "Profil",
+  "account": "Utwórz konto",
+  "exit": "Wyjście"
+},
     "login": {
       "title": "Logowanie",
       "email": "Email",
@@ -35,9 +43,14 @@
       "link": "Kliknij tutaj",
       "error": "Nieznany błąd"
     },
+    "column": {
+  "add_card": "Dodaj kartę",
+  "enter_name": "Wpisz nazwę",
+  "enter_amount": "Wpisz kwotę",
+  "creating": "Tworzenie..."
+},
     "dashboard": {
       "welcome": "Cześć! 👋",
-  "overview": "Oto krótki przegląd Twojej dzisiejszej pracy",
       "age": "Wiek",
       "name": "Imię",
       "description": "Opis",
@@ -47,9 +60,30 @@
       "exit": "Wyloguj",
       "edit": "Edytuj",
       "profile": "Profil",
-      "aboutuser": "O mnie"
+      "aboutuser": "O mnie",
+      "friend": "Przyjaciel",
+      "overview": "Oto krótki przegląd Twojej dzisiejszej pracy",
+  "my_cards": "Moje karty",
+  "done_cards": "Ukończone karty",
+  "progress": "Postęp",
+  "welcome_back": "Witaj z powrotem",
+  "active_cards_msg": "Masz {activeCards} aktywne karty oczekujące na Ciebie"
     },"errors": {
-  "notAdmin": "Nie masz uprawnień do dostępu do tej strony"
+  "notAdmin": "Nie masz uprawnień do dostępu do tej strony",
+  "profile_creation_failed": "Błąd podczas tworzenia profilu",
+    "dashboard_hook_error": "Błąd Dashboard Hook",
+    "response_fetch_error": "Błąd podczas odbierania odpowiedzi 😔",
+    "generic_error": "Coś poszło nie tak...",
+    "server_connection_failed": "Błąd połączenia z serwerem. Spróbuj ponownie.",
+    "save_error": "Błąd podczas zapisywania:",
+    "upload_error": "Błąd ładowania:",
+    "no_message_provided": "Nie podano wiadomości",
+    "stack_update_failed": "Błąd aktualizacji stosu:",
+    "access_denied_login": "Brak dostępu. Zaloguj się.",
+    "loading_users": "Ładowanie listy użytkowników...",
+    "generic_error_prefix": "Błąd:",
+    "fetch_users_failed": "Błąd podczas pobierania użytkowników:",
+    "fetch_cards_failed": "Błąd podczas pobierania kart:"
 },"common": {
   "loading": "Ładowanie..."
 },
@@ -57,6 +91,7 @@
       "age": "Wiek",
       "name": "Imię",
       "exit": "Wyloguj",
+      "all_users": "Wszyscy użytkownicy",
       "other": "Inna...",
       "add": "Dodaj",
       "role": "Rola",
@@ -68,13 +103,29 @@
       "profile": "Profil",
       "aboutuser": "O mnie",
       "email": "Email"
-    },
+    },"tariffs": {
+    "user_label": "UŻYTKOWNIK",
+    "admin_label": "ADMIN",
+    "buy": "Kupić",
+    "user_features": "Możesz: 1. tworzyć karty 2. komunikować się z AI 3. czytać artykuły 4. uzupełnić swój profil 5. przeglądać informacje o swojej aktywności",
+    "admin_features": "Możesz robić wszystko, co może użytkownik, ale możesz także przeglądać karty i profile innych użytkowników."
+  },"deals": {
+    "stages": {
+      "new": "Nowe",
+      "negotiation": "W negocjacjach",
+      "proposal": "Zaproponowane",
+      "closed_won": "Wygrane",
+      "closed_lost": "Przegrane"
+    }
+  },
     "edit": {
       "edit": "Edytuj profil",
       "save": "Zapisz",
       "exit": "Wyloguj",
       "name": "Imię",
-      "aboutuser": "O mnie"
+      "aboutuser": "O mnie",
+      "saving": "Zapisywanie...",
+"age": "Wiek"
     },
     "createprofile": {
       "createprofile": "Utwórz profil",

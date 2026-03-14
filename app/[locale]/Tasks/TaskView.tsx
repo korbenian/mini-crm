@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import TaskEditing from './TaskEditing'
 import { Task } from '../types/types'
 import styles from './tasks.module.scss'
-import useTasks from '../hooks/useTasks' // Твой новый хук
+import useTasks from '../hooks/useTasks' 
 
 export default function TaskView({ task }: { task: Task }) {
   const [isEditing, setIsEditing] = useState(false)

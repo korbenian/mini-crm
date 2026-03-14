@@ -8,12 +8,20 @@
       "haveAccount": "Haben Sie ein Konto?",
       "link": "Hier klicken"
     },
-    "navigation": {
-      "dashboard": "Dashboard",
-      "articles": "Artikel",
-      "tasks": "Aufgaben",
-      "chat": "Chat mit KI"
-    },
+   "navigation": {
+  "dashboard": "Dashboard",
+  "deals": "Deals",
+  "articles": "Artikel",
+  "tasks": "Aufgaben",
+  "chat": "KI-Chat",
+  "admin_title": "Admin-Bereich",
+  "users": "Benutzer",
+  "cards": "Alle Karten",
+  "analytics": "Analysen",
+  "profile": "Profil",
+  "account": "Konto erstellen",
+  "exit": "Beenden"
+},
     "dashboardMetrics": {
       "title": "Dashboard",
       "totalUsers": "Gesamtanzahl Nutzer",
@@ -36,7 +44,7 @@
     },
     "dashboard": {
       "welcome": "Hallo! 👋",
-  "overview": "Hier ist краткий обзор Ihrer heutigen Arbeit",
+
       "age": "Alter",
       "name": "Name",
       "description": "Beschreibung",
@@ -46,8 +54,36 @@
       "exit": "Abmelden",
       "edit": "Bearbeiten",
       "profile": "Profil",
-      "aboutuser": "Über mich"
-    },"errors": {
+      "aboutuser": "Über mich",
+      "friend": "Freund",
+      "overview": "Hier ist ein kurzer Überblick über deine heutige Arbeit",
+  "my_cards": "Meine Karten",
+  "done_cards": "Erledigte Karten",
+  "progress": "Fortschritt",
+  "welcome_back": "Willkommen zurück",
+  "active_cards_msg": "Du hast {activeCards} aktive Karten, die auf dich warten"
+    },
+    "column": {
+  "add_card": "Karte hinzufügen",
+  "enter_name": "Name eingeben",
+  "enter_amount": "Betrag eingeben",
+  "creating": "Wird erstellt..."
+},
+    "errors": {
+      "profile_creation_failed": "Fehler beim Erstellen des Profils",
+    "dashboard_hook_error": "Dashboard-Hook-Fehler",
+    "response_fetch_error": "Fehler beim Abrufen der Antwort 😔",
+    "generic_error": "Etwas ist schiefgelaufen...",
+    "server_connection_failed": "Verbindungsfehler zum Server. Bitte versuchen Sie es erneut.",
+    "save_error": "Fehler beim Speichern:",
+    "upload_error": "Fehler beim Laden:",
+    "no_message_provided": "Keine Nachricht angegeben",
+ "stack_update_failed": "Stack update error:",
+    "access_denied_login": "Access denied. Please log in.",
+    "loading_users": "Loading user list...",
+    "generic_error_prefix": "Error:",
+    "fetch_users_failed": "Error fetching users:",
+    "fetch_cards_failed": "Error fetching cards:",
   "notAdmin": "Sie haben keine Berechtigung, auf diese Seite zuzugreifen"
 },"common": {
   "loading": "Laden..."
@@ -59,6 +95,7 @@
       "edit": "Bearbeiten",
       "add": "Hinzufügen",
       "role": "Rolle",
+      "all_users": "Alle Benutzer",
       "other": "Andere...",
       "profile": "Profil",
       "enterTechnology": "Technologie eingeben",
@@ -67,13 +104,29 @@
       "technologies": "Technologie",
       "aboutuser": "Über mich",
       "email": "E-Mail"
-    },
+    },"tariffs": {
+    "user_label": "BENUTZER",
+    "admin_label": "ADMIN",
+    "buy": "Kaufen",
+    "user_features": "Sie können: 1. Karten erstellen 2. mit KI kommunizieren 3. Artikel lesen 4. Ihr Profil ausfüllen 5. Informationen über Ihre Aktivitäten einsehen",
+    "admin_features": "Sie können alles, was ein Benutzer kann, aber Sie können auch die Karten und Profile anderer Benutzer einsehen."
+  },"deals": {
+    "stages": {
+      "new": "Neu",
+      "negotiation": "In Verhandlung",
+      "proposal": "Vorgeschlagen",
+      "closed_won": "Gewonnen",
+      "closed_lost": "Verloren"
+    }
+  },
     "edit": {
       "edit": "Profil bearbeiten",
       "save": "Speichern",
       "exit": "Abmelden",
       "name": "Name",
-      "aboutuser": "Über mich"
+      "aboutuser": "Über mich",
+      "saving": "Speichern...",
+"age": "Alter"
     },
     "createprofile": {
       "createprofile": "Profil erstellen",

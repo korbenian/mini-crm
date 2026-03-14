@@ -37,7 +37,7 @@ export default function EditProfile({ datauser }: Props) {
           <input
             className={styles.input}
             type='number'
-            placeholder='Возраст'
+            placeholder={t('edit.age')}
             value={formState.age}
             onChange={e => setFormState({ ...formState, age: +e.target.value })}
           />
@@ -50,10 +50,10 @@ export default function EditProfile({ datauser }: Props) {
 
           <button 
             className={styles.button} 
-            onClick={() => handleSaveProfile(formState)} // ПЕРЕДАЕМ ДАННЫЕ СЮДА
+            onClick={() => handleSaveProfile(formState)} 
             disabled={isSaving}
           >
-            {isSaving ? 'Saving...' : t('edit.save')}
+            {isSaving ? t('edit.saving') : t('edit.save')}
           </button>
           
           <Link href='/ClientForm'>{t('edit.exit')}</Link>

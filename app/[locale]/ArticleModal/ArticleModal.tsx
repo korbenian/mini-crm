@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import styles from './ArticleModal.module.scss'
+import { useTranslations } from 'next-intl'
 
 export default function ArticleModal ({
   id,
@@ -10,7 +11,7 @@ export default function ArticleModal ({
   onClose: () => void
 }) {
   const [article, setArticle] = useState<any | null>(null)
-
+const t =useTranslations()
   useEffect(() => {
     const fetchArticle = async () => {
       const res = await fetch(`https://dev.to/api/articles/${id}`)
@@ -24,7 +25,7 @@ export default function ArticleModal ({
 if (!article) {
   return (
     <div className={styles.loadingOverlay}>
-      <div className={styles.loadingBox}>Загрузка...</div>
+      <div className={styles.loadingBox}>{t('loading.loading')}</div>
     </div>
   )
 }

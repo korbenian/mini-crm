@@ -8,12 +8,20 @@
       "haveAccount": "Heeft u een account?",
       "link": "Klik hier"
     },
-    "navigation": {
-      "dashboard": "Dashboard",
-      "articles": "Artikelen",
-      "tasks": "Taken",
-      "chat": "Chat met AI"
-    },
+   "navigation": {
+  "dashboard": "Dashboard",
+  "deals": "Deals",
+  "articles": "Artikelen",
+  "tasks": "Taken",
+  "chat": "AI Chat",
+  "admin_title": "Admin Gebied",
+  "users": "Gebruikers",
+  "cards": "Alle kaarten",
+  "analytics": "Analyse",
+  "profile": "Profiel",
+  "account": "Account aanmaken",
+  "exit": "Uitloggen"
+},
     "dashboardMetrics": {
       "title": "Dashboard",
       "totalUsers": "Totaal gebruikers",
@@ -34,9 +42,14 @@
       "link": "Klik hier",
       "error": "Onbekende fout"
     },
+    "column": {
+  "add_card": "Kaart toevoegen",
+  "enter_name": "Naam invoeren",
+  "enter_amount": "Bedrag invoeren",
+  "creating": "Aanmaken..."
+},
     "dashboard": {
-      "welcome": "Hallo там 👋",
-  "overview": "Hier is een kort overzicht van je werk van vandaag",
+      "welcome": "Hallo 👋",
       "age": "Leeftijd",
       "name": "Naam",
       "description": "Beschrijving",
@@ -46,9 +59,30 @@
       "exit": "Uitloggen",
       "edit": "Bewerken",
       "profile": "Profiel",
-      "aboutuser": "Over mij"
+      "aboutuser": "Over mij",
+      "friend": "Vriend",
+      "overview": "Hier is een kort overzicht van je werk vandaag",
+  "my_cards": "Mijn kaarten",
+  "done_cards": "Voltooid",
+  "progress": "Voortgang",
+  "welcome_back": "Welkom terug",
+  "active_cards_msg": "Je hebt {activeCards} actieve kaarten die op je wachten"
     },"errors": {
-  "notAdmin": "U heeft geen toestemming om deze pagina te bekijken"
+  "notAdmin": "U heeft geen toestemming om deze pagina te bekijken",
+  "profile_creation_failed": "Fout bij het aanmaken van profiel",
+    "dashboard_hook_error": "Dashboard Hook Fout",
+    "response_fetch_error": "Fout bij het ophalen van antwoord 😔",
+    "generic_error": "Er is iets misgegaan...",
+    "server_connection_failed": "Fout bij verbinding met de server. Probeer het opnieuw.",
+    "save_error": "Fout bij opslaan:",
+    "upload_error": "Fout bij laden:",
+    "no_message_provided": "Geen bericht opgegeven",
+    "stack_update_failed": "Fout bij bijwerken van stack:",
+    "access_denied_login": "Toegang geweigerd. Log in a.u.b.",
+    "loading_users": "Gebruikerslijst laden...",
+    "generic_error_prefix": "Fout:",
+    "fetch_users_failed": "Fout bij ophalen van gebruikers:",
+    "fetch_cards_failed": "Fout bij ophalen van kaarten:"
 },"common": {
   "loading": "Laden..."
 },
@@ -57,6 +91,7 @@
       "name": "Naam",
       "exit": "Uitloggen",
       "add": "Toevoegen",
+      "all_users": "Alle gebruikers",
       "edit": "Bewerken",
       "role": "Rol",
       "other": "Andere...",
@@ -67,13 +102,29 @@
       "profile": "Profiel",
       "aboutuser": "Over mij",
       "email": "E-mail"
-    },
+    },"tariffs": {
+    "user_label": "GEBRUIKER",
+    "admin_label": "ADMIN",
+    "buy": "Kopen",
+    "user_features": "Je kunt: 1. kaarten maken 2. communiceren met AI 3. artikelen lezen 4. je profiel invullen 5. informatie over je activiteit bekijken",
+    "admin_features": "Je kunt alles wat een gebruiker kan, maar je kunt ook de kaarten en profielen van andere gebruikers bekijken."
+  },"deals": {
+    "stages": {
+      "new": "Nieuw",
+      "negotiation": "In onderhandeling",
+      "proposal": "Voorgesteld",
+      "closed_won": "Gewonnen",
+      "closed_lost": "Verloren"
+    }
+  },
     "edit": {
       "edit": "Profiel bewerken",
       "save": "Opslaan",
       "exit": "Uitloggen",
       "name": "Naam",
-      "aboutuser": "Over mij"
+      "aboutuser": "Over mij",
+      "saving": "Opslaan...",
+"age": "Leeftijd"
     },
     "createprofile": {
       "createprofile": "Profiel aanmaken",

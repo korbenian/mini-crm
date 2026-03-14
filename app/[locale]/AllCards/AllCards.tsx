@@ -13,8 +13,8 @@ import { useAllCards } from '../AdminHooks/useAllCards'
   const  t  = useTranslations()
  const {handleSave,removeTask}=useTasks()
 const{ cards,loading,error }=useAllCards()
-if (loading) return <p>Загрузка списка юзеров...</p>
-  if (error) return <p style={{ color: 'red' }}>Ошибка: {error}</p>
+if (loading) return <p>{t('errors.loading_users')}</p>
+  if (error) return <p style={{ color: 'red' }}>{error}</p>
  return (
   <div className={styles.container}>
     <Sidebar />

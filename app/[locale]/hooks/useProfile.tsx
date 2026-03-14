@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Profile, UserProfile } from '../types/types'
 import { supabase } from '@/utils/supabase'
+import { useTranslations } from 'next-intl'
 
 export  function useProfile() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useRouter()
-
+const  t  = useTranslations()
   const handleSaveProfile = async (profileData: Profile) => {
   const{data:{user}}=await supabase.auth.getUser()
       if (!user) return
@@ -27,13 +28,13 @@ export  function useProfile() {
 
 if (supabaseError) {
   setError(supabaseError.message)
-  console.error("Ошибка базы:", supabaseError)
+  console.error(supabaseError)
   return 
 }
 
 navigate.push('/ClientForm')
     } catch (err) {
-      setError('Ошибка при создании профиля')
+      setError(t('profile_creation_failed'))
       console.error(err)
     } finally {
       setLoading(false)

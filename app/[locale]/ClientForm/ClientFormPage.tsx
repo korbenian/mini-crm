@@ -11,7 +11,6 @@ import {useRenderProfile} from '../hooks/useProfile'
 import { supabase } from '@/utils/supabase'
 import { useEffect } from 'react'
 const ClientForm: React.FC = () => {
-    const [techStack, setTechStack] = useState<string[]>([])
      const [showTech, setShowTech] = useState(false) 
      const [localTechs, setLocalTechs] = useState<string[]>([]);
      const  t  = useTranslations()
@@ -39,14 +38,14 @@ useEffect(() => {
         updated_at: new Date().toISOString() 
       });
 
-    if (error) console.error("Ошибка обновления стека:", error.message);
+    if (error) console.error(t('errors.stack_update_failed'), error.message);
   };
 
 
 
 
-  if (authLoading || profileLoading) return <p>Загрузка...</p>
-  if (!user) return <p>Доступ запрещен. Войдите в систему.</p>
+  if (authLoading || profileLoading) return <p>{t('loading.loading')}</p>
+  if (!user) return <p>{t("errors.access_denied_login")}</p>
  
   return (
     <div className={styles.wrapper}>

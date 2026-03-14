@@ -22,11 +22,19 @@
       "error": "Unknown error"
     },
     "navigation": {
-      "dashboard": "Dashboard",
-      "articles": "Articles",
-      "tasks": "Tasks",
-      "chat": "Chat with AI"
-    },
+  "dashboard": "Dashboard",
+  "deals": "Deals",
+  "articles": "Articles",
+  "tasks": "Tasks",
+  "chat": "AI Chat",
+  "admin_title": "Admin Area",
+  "users": "Users",
+  "cards": "All Cards",
+  "analytics": "Analytics",
+  "profile": "Profile",
+  "account": "Create Account",
+  "exit": "Exit"
+},
     "dashboardMetrics": {
       "title": "Dashboard",
       "totalUsers": "Total Users",
@@ -35,9 +43,14 @@
       "doneCards": "Done Cards",
       "myCards": "My Cards"
     },
+    "column": {
+  "add_card": "Add card",
+  "enter_name": "Enter name",
+  "enter_amount": "Enter amount",
+  "creating": "Creating..."
+},
     "dashboard": {
       "welcome": "Hello, there 👋",
-  "overview": "Here is a quick overview of your work today",
       "age": "Age",
       "name": "Name",
       "description": "Description",
@@ -47,9 +60,30 @@
       "exit": "Exit",
       "edit": "Edit",
       "profile": "Profile",
-      "aboutuser": "About me"
+      "aboutuser": "About me",
+      "friend": "Friend",
+      "overview": "Here is a quick overview of your work today",
+  "my_cards": "My cards",
+  "done_cards": "Done Cards",
+  "progress": "Progress",
+  "welcome_back": "Welcome back",
+  "active_cards_msg": "You have {activeCards} active cards waiting for you"
     },"errors": {
-  "notAdmin": "You do not have permission to access this page"
+  "notAdmin": "You do not have permission to access this page",
+  "profile_creation_failed": "Error creating profile",
+    "dashboard_hook_error": "Dashboard Hook Error",
+    "response_fetch_error": "Error receiving response 😔",
+    "no_message_provided": "No message provided",
+    "stack_update_failed": "Stack update error:",
+    "access_denied_login": "Access denied. Please log in.",
+    "loading_users": "Loading user list...",
+    "generic_error_prefix": "Error:",
+    "fetch_users_failed": "Error fetching users:",
+    "fetch_cards_failed": "Error fetching cards:",
+    "generic_error": "Something went wrong...",
+    "server_connection_failed": "Server connection error. Please try again.",
+    "save_error": "Error while saving:",
+    "upload_error": "Loading error:"
 },"common": {
   "loading": "Loading..."
 },
@@ -60,6 +94,7 @@
       "role": "Role",
       "technologies": "technologies",
       "edit": "Edit",
+      "all_users": "All Users",
       "enterTechnology": "Enter technology",
       "addTech": "Add Technologies",
   "hideTech": "Remove Technologies",
@@ -68,13 +103,29 @@
       "profile": "Profile",
       "aboutuser": "About me",
       "email": "Email"
-    },
+    },"deals": {
+    "stages": {
+      "new": "New",
+      "negotiation": "Negotiation",
+      "proposal": "Proposal",
+      "closed_won": "Closed Won",
+      "closed_lost": "Closed Lost"
+    }
+  },"tariffs": {
+    "user_label": "USER",
+    "admin_label": "ADMIN",
+    "buy": "Buy",
+    "user_features": "You can: 1.create cards 2.communicate with AI 3.read articles 4.fill out your profile 5.see information about your activity",
+    "admin_features": "You can do everything a user can do, but you can also see other users' cards and profiles."
+  },
     "edit": {
       "edit": "Edit Profile",
       "save": "Save",
       "exit": "Exit",
       "name": "Name",
-      "aboutuser": "About me"
+      "aboutuser": "About me",
+      "saving": "Saving...",
+"age": "Age"
     },
     "createprofile": {
       "createprofile": "Create Profile",

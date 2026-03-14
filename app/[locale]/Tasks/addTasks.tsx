@@ -24,9 +24,9 @@ export default function AddTask() {
       .order('created_at', { ascending: false })
 
     if (error) {
-      console.error("Ошибка загрузки:", error)
+      console.error(t('errors.upload_error'), error)
     } else {
-      setTasks(data as unknown as Task[]) // ВОТ ЭТОГО НЕ ХВАТАЛО!
+      setTasks(data as unknown as Task[]) 
     }
   }
   useEffect(()=>{
@@ -59,10 +59,10 @@ const newTaskPlaceholder: Task = {
     .single()
 
   if (error) {
-    console.error("Ошибка при сохранении:", error)
+    console.error(t('errors.save_error'), error)
  
     setTasks(prev => prev.filter(t => t.id !== tempId))
-    alert("Ошибка связи с сервером. Попробуй еще раз.")
+    alert(t('errors.server_connection_failed'))
   } else {
     setTasks(prev => prev.map(t => t.id === tempId ? data : t))
   }

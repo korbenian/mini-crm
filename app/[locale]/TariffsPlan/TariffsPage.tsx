@@ -1,4 +1,5 @@
 'use client'
+import { useTranslations } from 'next-intl'
 //C:\Users\User\mini-crm\app\[locale]\TariffsPlan.tsx\TariffsPage.tsx
 import Sidebar from '../components/Sidebar'
 import styles from './tariffs.module.scss'
@@ -10,9 +11,10 @@ type Tariffs={
 }
 
 const TariffPlans=({Tariffprops}:Tariffs)=>{
+    const t =useTranslations()
     const tariffs = [
-    {id:1,title:'USER',description:"You can: 1.create cards 2.communicate with AI 3.read articles 4.fill out your profile 5.see information about your activity"}
-,{id:2,title:'ADMIN',description:"You can do everything a user can do, but you can also see other users' cards and profiles."}
+    {id:1,title:t('tariffs.user_label'),description:t('tariffs.user_features')}
+,{id:2,title:t('tariffs.admin_label'),description:t('tariffs.admin_features')}
 
 ]
     return(
@@ -25,7 +27,7 @@ const TariffPlans=({Tariffprops}:Tariffs)=>{
                     {i.title =='ADMIN' ? <UserStar /> :<User />}
                     
                     <span>{i.description}</span>
-                    {i.title =='ADMIN' ? <div><button className={styles.buyButton} onClick={Tariffprops}>Купить</button><p>5.50$</p></div> :"Now"}
+                    {i.title =='ADMIN' ? <div><button className={styles.buyButton} onClick={Tariffprops}>{t('tariffs.buy')}</button><p>5.50$</p></div> :"Now"}
                 </div>
                 
             )}

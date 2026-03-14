@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/utils/supabase'
+import { useTranslations } from 'next-intl'
 
 export function useAllUsers() {
   const [users, setUsers] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-
+const t =useTranslations()
   const fetchUsers = async () => {
     setLoading(true)
     
@@ -16,7 +17,7 @@ export function useAllUsers() {
 
     if (supabaseError) {
       setError(supabaseError.message)
-      console.error("Ошибка при получении юзеров:", supabaseError)
+      console.error(t('errors.fetch_users_failed'), supabaseError)
     } else {
       setUsers(data || [])
     }

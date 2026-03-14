@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
+import { useTranslations } from "next-intl";
 //C:\Users\User\mini-crm\app\api\chat\route.ts
 
 export async function POST(req: Request) {
+  const t =useTranslations()
     console.log(">>> API ROUTE HIT!");
   try {
     const body = await req.json();
@@ -10,7 +12,7 @@ export async function POST(req: Request) {
     const { message } = body;
 
     if (!message) {
-      return NextResponse.json({ error: "No message provided" }, { status: 400 });
+      return NextResponse.json({ error: t('no_message_provided') }, { status: 400 });
     }
 
     const response = await axios.post(
@@ -34,9 +36,9 @@ export async function POST(req: Request) {
     });
 
   } catch (err: any) {
-    console.error("OpenRouter Error:", err.response?.data || err.message);
+    console.error( err.response?.data || err.message);
     return NextResponse.json(
-      { error: "Ошибка при связи с ИИ" }, 
+      { error: t('generic_error_prefix') }, 
       { status: 500 }
     );
   }

@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl'
 import styles from './TechSelector.module.scss'
 
 interface TechSelectorProps {
-  selected: string[] // Прилетает из ClientForm (из базы через useEffect)
-  onChange: (techs: string[]) => void // Функция, которая СРАЗУ пушит в базу из ClientForm
+  selected: string[] 
+  onChange: (techs: string[]) => void 
 }
 
 const POPULAR_TECHS = ['JavaScript', 'TypeScript', 'Python', 'Java', 'C#', 'Go', 'Rust', 'C++', 'PHP', 'Ruby']
@@ -15,13 +15,12 @@ export default function TechSelector({ selected = [], onChange }: TechSelectorPr
   const [customValue, setCustomValue] = useState('')
   const t = useTranslations()
 
-  // Логика переключения (без базы!)
   const handleToggle = (tech: string) => {
     const newList = selected.includes(tech)
       ? selected.filter(t => t !== tech)
       : [...selected, tech]
     
-    onChange(newList) // Сообщаем родителю: "Записывай в базу!"
+    onChange(newList) 
   }
 
   const handleAddCustom = () => {
@@ -35,7 +34,6 @@ export default function TechSelector({ selected = [], onChange }: TechSelectorPr
 
   return (
     <div className={styles['tech-container']}>
-      {/* Рендерим популярные */}
       {POPULAR_TECHS.map(tech => (
         <button
           key={tech}
@@ -47,7 +45,6 @@ export default function TechSelector({ selected = [], onChange }: TechSelectorPr
         </button>
       ))}
 
-      {/* Рендерим те, что юзер добавил сам (кастомные) */}
       {selected.filter(t => !POPULAR_TECHS.includes(t)).map(tech => (
         <button
           key={tech}

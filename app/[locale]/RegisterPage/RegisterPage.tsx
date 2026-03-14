@@ -1,12 +1,9 @@
 "use client"
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase'
 import styles from './RegisterPage.module.scss'
 import Input from '../components/Input'
 import  Link  from 'next/link'
-import Button from '../components/Button'
 import { useTranslations } from 'next-intl'
 import ChangeTheme from '../components/ThemeButton'
 import LanguageSwitcher from '../components/ChangeLanguage'
@@ -21,10 +18,6 @@ const RegisterPage = () => {
     e.preventDefault()
     setError('')
     try {
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    console.error("Ключи Supabase не найдены! Проверь .env.local");
-    return;
-  }
       const {data,error}=await supabase.auth.signUp({
         email,
         password
