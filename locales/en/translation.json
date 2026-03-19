@@ -67,7 +67,13 @@
   "done_cards": "Done Cards",
   "progress": "Progress",
   "welcome_back": "Welcome back",
-  "active_cards_msg": "You have {activeCards} active cards waiting for you"
+  "active_cards_msg": "You have {activeCards} active cards waiting for you",
+  "funnel_title": "Sales Funnel (Deal Count)",
+  "kpi": {
+    "revenue": "Total Revenue",
+    "active_deals": "Active Deals",
+    "avg_ticket": "Avg. Ticket Size"
+  }
     },"errors": {
   "notAdmin": "You do not have permission to access this page",
   "profile_creation_failed": "Error creating profile",

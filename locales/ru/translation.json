@@ -67,7 +67,13 @@
   "done_cards": "Выполненные",
   "progress": "Прогресс",
   "welcome_back": "С возвращением",
-  "active_cards_msg": "У вас {activeCards} активных карточек, ожидающих выполнения"
+  "active_cards_msg": "У вас {activeCards} активных карточек, ожидающих выполнения",
+  "funnel_title": "Воронка продаж (количество сделок)",
+  "kpi": {
+    "revenue": "Общая выручка",
+    "active_deals": "Активные сделки",
+    "avg_ticket": "Средний чек"
+  }
     },
     "profile": {
       "age": "Возраст",

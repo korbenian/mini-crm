@@ -55,6 +55,7 @@ const {handleSaveProfile,loading:isSaving,error:isError}=useProfile()
           }
         />
      <button
+     className={styles.button}
   onClick={()=>handleSaveProfile(profileData)}
   disabled={isSaving}
 >{isSaving ? 'Saving...' : 'Save'}

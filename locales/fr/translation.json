@@ -67,7 +67,13 @@
   "done_cards": "Cartes terminées",
   "progress": "Progression",
   "welcome_back": "Bon retour",
-  "active_cards_msg": "Vous avez {activeCards} cartes actives qui vous attendent"
+  "active_cards_msg": "Vous avez {activeCards} cartes actives qui vous attendent",
+  "funnel_title": "Entonnoir de vente (Nombre d'opportunités)",
+  "kpi": {
+    "revenue": "Chiffre d'affaires total",
+    "active_deals": "Opportunités actives",
+    "avg_ticket": "Panier moyen"
+  }
     },"errors": {
   "notAdmin": "Vous n'avez pas l'autorisation d'accéder à cette page",
   "profile_creation_failed": "Erreur lors de la création du profil",

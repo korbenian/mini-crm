@@ -66,7 +66,13 @@
   "done_cards": "Voltooid",
   "progress": "Voortgang",
   "welcome_back": "Welkom terug",
-  "active_cards_msg": "Je hebt {activeCards} actieve kaarten die op je wachten"
+  "active_cards_msg": "Je hebt {activeCards} actieve kaarten die op je wachten",
+  "funnel_title": "Verkooptrechter (Aantal deals)",
+  "kpi": {
+    "revenue": "Totale omzet",
+    "active_deals": "Actieve deals",
+    "avg_ticket": "Gemiddelde dealwaarde"
+  }
     },"errors": {
   "notAdmin": "U heeft geen toestemming om deze pagina te bekijken",
   "profile_creation_failed": "Fout bij het aanmaken van profiel",

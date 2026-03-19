@@ -1,69 +1,73 @@
+.wrapper_edit {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+}
 
-.wrapper_edit{
+.Sidebar {
+  width: 260px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-right: 1px solid #1a1a1a;
+  z-index: 100;
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: 260px; 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  padding: 60px 20px;
+}
+
+.form {
   width: 100%;
-}
-.wrapper {
- width: 100%;
-justify-content: center;
- display: flex;
-height: 100%;
-align-items: center;
-   background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-
-.form{ padding: 2rem;  border-radius: 12px;
-  border: solid;
-  width: 30%;
+  max-width: 500px;
+  background: #0a0a0a;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid #1a1a1a;
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
-}
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
-.Sidabar{
-  position: fixed;
-  left: 0&;
-}
-.title {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
+  .title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
 
-.input,
-.textarea {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
+  input, textarea {
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
 
-.textarea {
-  min-height: 100px;
-  resize: vertical;
-}
+    &:focus {
+      outline: none;
+      border-color: #2563eb; 
+    }
+  }
 
-.button {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #007bff;
+  .button {
+    background-color: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: all 0.2s ease;
 
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.error {
-  color: red;
-  margin-bottom: 1rem;
-  text-align: center;
+    &:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-2px);
+    }
+  }
 }

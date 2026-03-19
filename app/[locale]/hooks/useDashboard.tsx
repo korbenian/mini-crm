@@ -9,7 +9,53 @@ export function useDashboard() {
     activeCards: 0,
     progress: 0
   })
+  const [kpi, setKpi] = useState({ revenue: 0, activeCount: 0, avgTicket: 0 })
+  const [funnel, setFunnel] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+
+useEffect(()=>{
+const fetchData= async()=>{
+  const {data:deals}= await supabase
+.from('deals')
+.select('*')
+if(!deals)return
+const wonDeals=deals.filter(d=>d.stage=='closed_won')
+const revenueDeals=wonDeals.reduce((sum,d)=>sum +d.amount,0)
+const activeDeals=deals.filter(d =>!['closed_won','closed_lost'].includes(d.stage))
+
+setKpi({
+  revenue:revenueDeals,
+  activeCount:activeDeals.length,
+  avgTicket: wonDeals.length >0?revenueDeals/ wonDeals.length :0
+})
+const stagesOrder = ['lead', 'negotiation', 'proposal', 'closed_won']
+const funnelDate=stagesOrder.map(stage=>({
+  name:stage,
+  value:deals.filter(d=>d.stage===stage).length,
+  amount:deals.filter(d=>d.stage===stage).reduce((sum,d)=>sum+d.amount,0)
+}))
+setFunnel(funnelDate)
+  setLoading(false)
+
+}
+fetchData()
+
+
+},[])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     async function fetchMetrics() {
@@ -45,5 +91,5 @@ export function useDashboard() {
     fetchMetrics()
   }, [])
 
-  return { metrics, loading }
+  return { metrics, loading ,kpi, funnel,}
 }

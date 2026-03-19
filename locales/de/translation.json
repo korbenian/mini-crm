@@ -44,7 +44,6 @@
     },
     "dashboard": {
       "welcome": "Hallo! 👋",
-
       "age": "Alter",
       "name": "Name",
       "description": "Beschreibung",
@@ -61,7 +60,13 @@
   "done_cards": "Erledigte Karten",
   "progress": "Fortschritt",
   "welcome_back": "Willkommen zurück",
-  "active_cards_msg": "Du hast {activeCards} aktive Karten, die auf dich warten"
+  "active_cards_msg": "Du hast {activeCards} aktive Karten, die auf dich warten",
+  "funnel_title": "Verkaufsrichter (Anzahl der Deals)",
+  "kpi": {
+    "revenue": "Gesamtumsatz",
+    "active_deals": "Aktive Deals",
+    "avg_ticket": "Durchschnittlicher Deal-Wert"
+  }
     },
     "column": {
   "add_card": "Karte hinzufügen",

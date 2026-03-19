@@ -67,7 +67,13 @@
   "done_cards": "Ukończone karty",
   "progress": "Postęp",
   "welcome_back": "Witaj z powrotem",
-  "active_cards_msg": "Masz {activeCards} aktywne karty oczekujące na Ciebie"
+  "active_cards_msg": "Masz {activeCards} aktywne karty oczekujące na Ciebie",
+  "funnel_title": "Lejek sprzedaży (Liczba transakcji)",
+  "kpi": {
+    "revenue": "Całkowity przychód",
+    "active_deals": "Aktywne transakcje",
+    "avg_ticket": "Średnia wartość transakcji"
+  }
     },"errors": {
   "notAdmin": "Nie masz uprawnień do dostępu do tej strony",
   "profile_creation_failed": "Błąd podczas tworzenia profilu",
