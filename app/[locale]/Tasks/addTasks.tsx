@@ -103,11 +103,11 @@ const newTaskPlaceholder: Task = {
       +
     </button>
 
-    <div className={styles.taskList}>
-      {filteredTasks.map(task => (
-        <TaskView key={task.id} task={task}  />
-      ))}
-    </div></div>
+   <div className={styles.taskList}>
+  {filteredTasks.map(task => (
+    <TaskView key={task.id} task={task} onUpdate={fetchTasks} />
+  ))}
+</div></div>
   </div>
 )
 }
