@@ -55,11 +55,3 @@ Currently, the project is moving into **Phase 2**, which includes:
 1. **Database Migration:** Moving from Firebase to **PostgreSQL with Prisma ORM** for advanced relational data modeling.
 2. **Advanced Analytics:** Implementing server-side data processing.
 3. **API Optimization:** Switching to Next.js Server Actions for improved performance.
-
----
-
-## ⚙️ Installation
-
-1. Clone the repository:
-   ```bash
-   git clone [your-repo-link]
